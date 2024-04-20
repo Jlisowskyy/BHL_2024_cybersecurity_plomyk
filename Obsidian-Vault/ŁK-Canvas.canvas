@@ -10,7 +10,15 @@
 		{"id":"5baa88cc7c5574a7","x":-184,"y":280,"width":364,"height":196,"type":"text","text":"#### Phishing\nNabieramy ludzi (np przez mail, sms) aby weszli na jakąś stronkę/pobrali jakiś plik/wpisali jakiś kod etc. Tak abyśmy uzyskali dzięki nim większy dostęp"},
 		{"id":"716bce7d0be1879d","x":-182,"y":541,"width":362,"height":279,"type":"text","text":"#### Replication Through Removable Media\nWrzuć malware na np pendrive.\npodlaczysz pendrive -> od razu wykonuje sie zly kod.\n\n**virus na twoim pc może potem automatycznie zarażać inne pendrive zeby rozszerzac virus**"},
 		{"id":"a1b413d11b9b62c4","x":-719,"y":681,"width":326,"height":249,"type":"text","text":"#### Trusted Relationship\nCzęsto w naszym systemie istnieją osoby trzecie które mają jakiś elevated privilage. Zhackuj admina -> dorwiesz klientów"},
-		{"id":"9bf7802603a41ba9","x":-611,"y":1781,"width":250,"height":60,"type":"text","text":"Mail"}
+		{"id":"511f3adbcac3208d","x":-432,"y":1180,"width":192,"height":60,"type":"text","text":"Main Apka"},
+		{"id":"9bf7802603a41ba9","x":-719,"y":1440,"width":250,"height":60,"type":"text","text":"Mail"},
+		{"id":"3cd18f55e9967f6b","x":-660,"y":1300,"width":250,"height":60,"type":"text","text":"Lista Pracowników do przetestowania"},
+		{"id":"bbad11a225b8f434","x":-236,"y":1281,"width":250,"height":60,"type":"text","text":"Web Scraping"},
+		{"id":"8293483f7e606ec6","x":-248,"y":1405,"width":250,"height":60,"type":"text","text":"Dane kontekstowe na tem"}
 	],
-	"edges":[]
+	"edges":[
+		{"id":"68e4bec3ddb8d7dd","fromNode":"511f3adbcac3208d","fromSide":"bottom","toNode":"3cd18f55e9967f6b","toSide":"top"},
+		{"id":"963b98c82aa0f069","fromNode":"3cd18f55e9967f6b","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"left"},
+		{"id":"bf73ba19bcb8bc24","fromNode":"bbad11a225b8f434","fromSide":"bottom","toNode":"8293483f7e606ec6","toSide":"top"}
+	]
 }
