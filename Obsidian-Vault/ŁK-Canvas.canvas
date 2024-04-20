@@ -37,7 +37,10 @@
 		{"id":"ac5df3bffde1168d","type":"text","text":"Najczęstszymi atakami są phishingi","x":-1358,"y":1299,"width":250,"height":60},
 		{"id":"71b4fc553064ae07","type":"text","text":"Najskuteczniej trenować ludzi do rozpoznawania phishingu niż stosować inne rozwiązania (np wykrywające phishing) ","x":-1358,"y":1381,"width":250,"height":159},
 		{"id":"36cf2f50bbf35209","type":"text","text":"state-of-the-art narzędzia do trenowania ludzi są słabe","x":-1358,"y":1570,"width":250,"height":124},
-		{"id":"cea7285b601d6c52","x":1169,"y":1304,"width":250,"height":60,"type":"text","text":""}
+		{"id":"cea7285b601d6c52","x":1154,"y":1330,"width":250,"height":60,"type":"text","text":"Langchain"},
+		{"id":"e9ade54632b875d8","x":1154,"y":1139,"width":250,"height":60,"type":"text","text":"Forms"},
+		{"id":"57533b5e447e403d","x":1153,"y":1240,"width":250,"height":60,"type":"text","text":"Linkedin Scapper"},
+		{"id":"da846931d291813c","x":1460,"y":1330,"width":250,"height":60,"type":"text","text":"Trzeba to wymyślić i zaprojektować"}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
@@ -54,6 +57,9 @@
 		{"id":"77dc8a22bf4298ae","fromNode":"c4c104b96c3aee6d","fromSide":"bottom","toNode":"ecd3c12b5f08507e","toSide":"top"},
 		{"id":"6869b8739e16f3f9","fromNode":"83d0fab4ddee9e60","fromSide":"right","toNode":"2cd486ae557e0de7","toSide":"left"},
 		{"id":"9b4c4c6036b94d6b","fromNode":"83d0fab4ddee9e60","fromSide":"right","toNode":"65343f193af2bdbf","toSide":"left"},
-		{"id":"ce5359ee1e7fb04d","fromNode":"ef1e2b5a5bff32e5","fromSide":"right","toNode":"cea7285b601d6c52","toSide":"left"}
+		{"id":"ce5359ee1e7fb04d","fromNode":"ef1e2b5a5bff32e5","fromSide":"right","toNode":"cea7285b601d6c52","toSide":"left"},
+		{"id":"e7ba88e9b9207913","fromNode":"25d70f9000943832","fromSide":"right","toNode":"e9ade54632b875d8","toSide":"left"},
+		{"id":"054fe90e858f6a30","fromNode":"4bba8c578a5f58e3","fromSide":"right","toNode":"57533b5e447e403d","toSide":"left"},
+		{"id":"b42e27a4969edca7","fromNode":"cea7285b601d6c52","fromSide":"right","toNode":"da846931d291813c","toSide":"left"}
 	]
 }
