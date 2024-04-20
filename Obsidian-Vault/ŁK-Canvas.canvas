@@ -53,7 +53,8 @@
 		{"id":"589b43606d17c688","x":-100,"y":2701,"width":250,"height":119,"type":"text","text":"Typ Testu"},
 		{"id":"527396b7f7d9aeac","x":-100,"y":2840,"width":250,"height":109,"type":"text","text":"Medium Testu (sms/mail)"},
 		{"id":"d324eb5142b46454","x":-100,"y":2980,"width":250,"height":60,"type":"text","text":"send"},
-		{"id":"0b2052230d8f203c","x":-360,"y":2697,"width":240,"height":50,"type":"text","text":""}
+		{"id":"0b2052230d8f203c","x":-360,"y":2697,"width":240,"height":64,"type":"text","text":"Load Config\nSave Config\n"},
+		{"id":"01c2688930245b3c","x":-360,"y":2776,"width":240,"height":64,"type":"text","text":"Interval (Co ile powtarzac)"}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
