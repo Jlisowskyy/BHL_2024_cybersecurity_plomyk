@@ -33,8 +33,9 @@
 		{"id":"2cd486ae557e0de7","x":1154,"y":1420,"width":250,"height":60,"type":"text","text":"Mail"},
 		{"id":"65343f193af2bdbf","x":1154,"y":1490,"width":250,"height":60,"type":"text","text":"SMS"},
 		{"id":"650be047dc579c79","x":-1358,"y":1215,"width":250,"height":60,"type":"text","text":"Dla kogo: Red Teamy"},
-		{"id":"ac5df3bffde1168d","x":-1358,"y":1320,"width":250,"height":60,"type":"text","text":"Najczęstszymi atakami są phishingi"},
-		{"id":"71b4fc553064ae07","x":-1358,"y":1402,"width":250,"height":118,"type":"text","text":"Najskuteczniej trenować ludzi do rozpoznawania phishingu niż stosować inne rozwiązania (np wykrywające phishing) "}
+		{"id":"ac5df3bffde1168d","x":-1358,"y":1299,"width":250,"height":60,"type":"text","text":"Najczęstszymi atakami są phishingi"},
+		{"id":"71b4fc553064ae07","x":-1358,"y":1381,"width":250,"height":159,"type":"text","text":"Najskuteczniej trenować ludzi do rozpoznawania phishingu niż stosować inne rozwiązania (np wykrywające phishing) "},
+		{"id":"36cf2f50bbf35209","x":-1358,"y":1570,"width":250,"height":60,"type":"text","text":"Narzędzia do trenowania ludzi s"}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
