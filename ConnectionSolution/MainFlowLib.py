@@ -5,6 +5,7 @@ import time
 
 import MailSendingLib as mLib
 from DataCollection import *
+import MailGenerator as mg
 import Helpers as hp
 
 class LinkTestCase:
@@ -34,11 +35,11 @@ class Worker:
     name: str
     surname: str
     mail: str
-    dataset: list[WorkerData]
+    dataset: list[LinkedinData]
     lastTest: float
     tests: list[LinkTestCase]
 
-    def __init__(self, name: str, surname: str, mail: str, dataset: list[WorkerData], points=0, lastTest=time.time()):
+    def __init__(self, name: str, surname: str, mail: str, dataset: list[LinkedinData], points=0, lastTest=time.time()):
         self.name = name
         self.surname = surname
         self.mail = mail
@@ -86,6 +87,9 @@ class Department:
         testDB[keyseq] = test
 
         link = mLib.MailSender.GenerateDummyLink(keyseq)
+        mg.GetMailParams(worker.dataset)
+
+
 
 
     # true -> test finished, false -> test ongoing
