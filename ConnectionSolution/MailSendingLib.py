@@ -13,7 +13,7 @@ def InplaceLinkInMail(emailContent: str, link: str) -> str:
 
 # Class used to implement main mail sending logic
 class MailSender:
-    def __init__(self, server="smtp.gmail.com", port=587):
+    def __init__(self, server="smtp.gmail.com", port=465):
         self.__serverName = server
         self.__serverPort = port
 
@@ -26,14 +26,14 @@ class MailSender:
 
         message.attach(MIMEText(msg, 'plain'))
 
-        print(message.as_string())
+        print(f"[ LOG ] Prepared msg:\n{message.as_string()}")
 
-        # Connect to SMTP server
-        with smtp.SMTP_SSL(self.__serverName, self.__serverPort) as smtp_server:
-            smtp_server.login(srcMail, srcPasswd)
-            smtp_server.sendmail(srcMail, srcMail, message.as_string())
-        print("Message sent!")
+        with smtp.SMTP_SSL(self.__serverName, self.__serverPort) as server:
+            server.login(srcMail, srcPasswd)
+            server.sendmail(srcMail, srcMail, message.as_string())
 
-# Function performs full mail sending logic with to desired u
+        print("[ LOG ] Message sent")
+
+    # Function performs full mail sending logic with to desired u
     def SendPreparedEmail(self, emailTitle: str, emailContent: str, userEmail: str):
         pass

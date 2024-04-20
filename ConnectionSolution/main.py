@@ -7,14 +7,26 @@ import MailSendingLib as mLib
 def LogicTest():
     SendingTest()
 
-
 # Iterates through mails contained in test fails and performs mail send
-def SendingTest():
-    sender = mLib.MailSender()
+# Functions opens ./mailList file and read from the first line smtp parameters then iterates through
+# all mails contained in the file to perform mail sending test
 
+def OpenSender(line) -> mLib.MailSender:
+    line = line.split(':')
+    if not line or len(line) != 2:
+        return None
+
+    return mLib.MailSender(line[0], int(line[1]))
+def SendingTest():
+    lineCnt = 0;
     with open("mailList", 'r') as file:
         for line in file:
+            lineCnt+=1
             line = line.strip()
+
+            if lineCnt == 1:
+                sender=OpenSender(line)
+                continue
 
             if not line or line[0] == '#':
                 continue
