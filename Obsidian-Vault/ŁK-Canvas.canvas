@@ -32,7 +32,6 @@
 		{"id":"ef1e2b5a5bff32e5","type":"text","text":"Pipeline generacji wiadomości","x":771,"y":1360,"width":250,"height":60},
 		{"id":"83d0fab4ddee9e60","type":"text","text":"Moduł wysyłania wiadomości ","x":771,"y":1445,"width":250,"height":75},
 		{"id":"2cd486ae557e0de7","type":"text","text":"Mail","x":1154,"y":1420,"width":250,"height":60},
-		{"id":"65343f193af2bdbf","type":"text","text":"SMS","x":1154,"y":1490,"width":250,"height":60},
 		{"id":"650be047dc579c79","type":"text","text":"Dla kogo: Red Teamy","x":-1358,"y":1215,"width":250,"height":60},
 		{"id":"ac5df3bffde1168d","type":"text","text":"Najczęstszymi atakami są phishingi","x":-1358,"y":1299,"width":250,"height":60},
 		{"id":"71b4fc553064ae07","type":"text","text":"Najskuteczniej trenować ludzi do rozpoznawania phishingu niż stosować inne rozwiązania (np wykrywające phishing) ","x":-1358,"y":1381,"width":250,"height":159},
@@ -40,7 +39,9 @@
 		{"id":"cea7285b601d6c52","x":1154,"y":1330,"width":250,"height":60,"type":"text","text":"Langchain"},
 		{"id":"e9ade54632b875d8","x":1154,"y":1139,"width":250,"height":60,"type":"text","text":"Forms"},
 		{"id":"57533b5e447e403d","x":1153,"y":1240,"width":250,"height":60,"type":"text","text":"Linkedin Scapper"},
-		{"id":"da846931d291813c","x":1460,"y":1330,"width":250,"height":60,"type":"text","text":"Trzeba to wymyślić i zaprojektować"}
+		{"id":"da846931d291813c","x":1460,"y":1330,"width":250,"height":60,"type":"text","text":"Trzeba to wymyślić i zaprojektować"},
+		{"id":"65343f193af2bdbf","type":"text","text":"SMS","x":1154,"y":1510,"width":250,"height":60},
+		{"id":"842c59bb19388900","x":1465,"y":1156,"width":250,"height":60,"type":"text","text":"Wybór informacji które będą obok "}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
