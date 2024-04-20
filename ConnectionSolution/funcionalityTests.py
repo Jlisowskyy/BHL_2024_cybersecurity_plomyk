@@ -1,25 +1,12 @@
-# Autor: Jakub Lisowski
+# Autor: Jakub Lisowski, Jlisowskyy
 
 import unittest
 import MailSendingLib as mLib
 
 class MailManipulationTests(unittest.TestCase):
+    def test_token_replace(self):
+        self.assertEqual(mLib.InplaceLinkInMail("basic template [link_token]", "LINK"), "basic template LINK")
 
-
-
-    # def test_upper(self):
-    #     self.assertEqual('foo'.upper(), 'FOOo')
-    #
-    # def test_isupper(self):
-    #     self.assertTrue('FOO'.isupper())
-    #     self.assertFalse('Foo'.isupper())
-    #
-    # def test_split(self):
-    #     s = 'hello world'
-    #     self.assertEqual(s.split(), ['hello', 'world'])
-    #     # check that s.split fails when the separator is not a string
-    #     with self.assertRaises(TypeError):
-    #         s.split(2)
 
 if __name__ == '__main__':
     unittest.main()
