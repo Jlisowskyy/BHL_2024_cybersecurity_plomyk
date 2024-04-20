@@ -49,10 +49,11 @@
 		{"id":"b5e599ff81c45bf5","x":1820,"y":1547,"width":250,"height":60,"color":"4","type":"text","text":"Michał"},
 		{"id":"ef1e2b5a5bff32e5","type":"text","text":"Pipeline generacji wiadomości","x":740,"y":1526,"width":250,"height":60},
 		{"id":"4bba8c578a5f58e3","type":"text","text":"Web Scrapping","x":740,"y":1406,"width":250,"height":60},
-		{"id":"9fdc9462ad4298aa","x":-750,"y":2697,"width":634,"height":503,"type":"text","text":"Lista Osób"},
+		{"id":"9fdc9462ad4298aa","x":-750,"y":2697,"width":370,"height":503,"type":"text","text":"Lista działów firmy"},
 		{"id":"589b43606d17c688","x":-100,"y":2701,"width":250,"height":119,"type":"text","text":"Typ Testu"},
 		{"id":"527396b7f7d9aeac","x":-100,"y":2840,"width":250,"height":109,"type":"text","text":"Medium Testu (sms/mail)"},
-		{"id":"d324eb5142b46454","x":-100,"y":2980,"width":250,"height":60,"type":"text","text":"send"}
+		{"id":"d324eb5142b46454","x":-100,"y":2980,"width":250,"height":60,"type":"text","text":"send"},
+		{"id":"0b2052230d8f203c","x":-360,"y":2697,"width":240,"height":50,"type":"text","text":""}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
