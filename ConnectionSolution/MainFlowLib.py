@@ -76,7 +76,6 @@ class Department:
         self.courseThreshold = courceThreshold
         self.workers = list()
 
-    # TODO:
     def PerformPhishingTest(self, worker: Worker, testDB: dict[str, LinkTestCase]):
         test = LinkTestCase()
 
@@ -87,10 +86,9 @@ class Department:
         testDB[keyseq] = test
 
         link = mLib.MailSender.GenerateDummyLink(keyseq)
-        mg.GetMailParams(worker.dataset)
+        [title, content] = mg.GetMailParams(worker.dataset)
 
-
-
+        self.ScamSender.SendMail(title, content, worker.mail, link)
 
     # true -> test finished, false -> test ongoing
     def ProcessWorkerTestCase(self, worker: Worker, test: LinkTestCase) -> bool:
