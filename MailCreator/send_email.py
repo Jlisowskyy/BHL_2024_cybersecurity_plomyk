@@ -6,6 +6,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import pickle
 import os.path
+from generete_mail import create_phishing_mail
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.send']
 
@@ -33,5 +34,20 @@ def send_email(to, subject, body):
     send_message = (service.users().messages().send(userId="me", body=create_message).execute())
     print(F'sent message to {to} Message Id: {send_message["id"]}')
 
+
+def send_email_linkedin(to, content):
+    dict = create_phishing_mail(content)
+    send_email(to, dict["temat"], dict["mail"])
+
 # Example usage
-send_email("jlisowskyy@gmail.com", "kuba to kupka", "siema fhehe")
+send_email_linkedin("kmichaxx@gmail.com","""POST:
+With the great pleasure I would like to announce that I am an ambassador of Wyciskarka Potencjału x NewsUp
+
+I encourage you to join me, apply till the 16th of April!
+
+OSOBA:
+Gabriela Gacek
+XXII Liceum Ogólnokształcące im. Jose Marti WarszawaXXII Liceum Ogólnokształcące im. Jose Marti Warszawa
+English
+Project Management / Content Creator / Social Activist / Speaker / Marketing team of #niezamłodzi / Ambasador of Wyciskarka Potencjału / Teacher at Webkorki
+""")
