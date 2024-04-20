@@ -5,7 +5,8 @@
 		{"id":"8b8cdac17a7f0ad0","type":"text","text":"Codziennie mini szkolenia z phishingu (interaktywna gierka - typu 2/3 maile zmieszane z niedobrymi mailami, i masz tylko powiedziec tak lub nie, i odpala ci sie na np 10 s)","x":1180,"y":-17,"width":250,"height":240},
 		{"id":"326255d1ec9d4f0a","type":"text","text":"#### Content Injection\n- Przechwytujemy paczki w sieci i doczepiamy do nich naszą własną zawartość","x":-719,"y":-20,"width":260,"height":220},
 		{"id":"a5ddd5db0d00d876","type":"text","text":"#### Exploit Public-Facing Application\nMamy publiczny dostęp do aplikacji -> np socket.\nW sockecie jest jakiś błąd / słabość -> exploitujemy ja","x":-419,"y":-20,"width":330,"height":240},
-		{"id":"9ae1e4b9e68564a5","type":"text","text":"#### Drive-by Compromise\n- Stronka na którą wszedłeś ma  malicious javascript który coś ci haksuje","x":-59,"y":-17,"width":340,"height":177}
+		{"id":"9ae1e4b9e68564a5","type":"text","text":"#### Drive-by Compromise\n- Stronka na którą wszedłeś ma  malicious javascript który coś ci haksuje","x":-59,"y":-17,"width":340,"height":177},
+		{"id":"3370f90ee5fda214","x":-719,"y":280,"width":359,"height":196,"type":"text","text":"#### External Remote Services\nW sieci firmowej masz VPN'a -> jeśli masz dostęp do VPN'"}
 	],
 	"edges":[]
 }
