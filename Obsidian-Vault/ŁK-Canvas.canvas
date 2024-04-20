@@ -1,7 +1,7 @@
 {
 	"nodes":[
 		{"id":"ca9b6de8979cb403","type":"group","x":-740,"y":-37,"width":1261,"height":1017,"color":"4","label":"Initial Access"},
-		{"id":"ecd3c12b5f08507e","type":"group","x":-1340,"y":1662,"width":420,"height":407,"color":"1","label":"Typ Testu"},
+		{"id":"ecd3c12b5f08507e","type":"group","x":-1340,"y":1662,"width":420,"height":558,"color":"1","label":"Typ Testu"},
 		{"id":"e3b1c5ec99be319e","type":"group","x":1160,"y":-37,"width":302,"height":513,"color":"2","label":"Pomysły"},
 		{"id":"d4bc43cf0629be5e","type":"group","x":-880,"y":1662,"width":499,"height":184,"color":"1","label":"Medium Testu"},
 		{"id":"8b8cdac17a7f0ad0","type":"text","text":"Codziennie mini szkolenia z phishingu (interaktywna gierka - typu 2/3 maile zmieszane z niedobrymi mailami, i masz tylko powiedziec tak lub nie, i odpala ci sie na np 10 s)","x":1180,"y":-17,"width":250,"height":240},
@@ -23,8 +23,8 @@
 		{"id":"cf7d4049ca787316","type":"text","text":"Przygotowanie Phishing wiadomości","x":-651,"y":1940,"width":250,"height":60},
 		{"id":"23d657e231aff7ac","type":"text","text":"Wysłanie jej","x":-650,"y":2039,"width":250,"height":60},
 		{"id":"910abad03bf530a0","type":"text","text":"Standard Phishing","x":-1320,"y":1682,"width":225,"height":60},
-		{"id":"cb58cbf6604f83de","type":"text","text":"Atak wewnętrzny z pozycji uprzywilejowanej (CEO)","x":-1317,"y":1766,"width":220,"height":114},
-		{"id":"5c117d1999d27db2","type":"text","text":"Atak wewnętrzny z pozycji nieuprzywilowanej (konto kogoś z firmy)","x":-1317,"y":1913,"width":220,"height":114}
+		{"id":"cb58cbf6604f83de","type":"text","text":"Atak wewnętrzny z pozycji uprzywilejowanej (ktoś wysoko postawiony w firmie)","x":-1317,"y":1766,"width":220,"height":174},
+		{"id":"5c117d1999d27db2","type":"text","text":"Atak wewnętrzny z pozycji nieuprzywilowanej (konto kogoś z firmy)","x":-1315,"y":1955,"width":220,"height":144}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
