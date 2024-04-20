@@ -1,6 +1,7 @@
 # Author: Jakub Lisowski, Jlisowskyy
 
 import json
+import threading
 import time
 
 import MailSendingLib as mLib
@@ -139,46 +140,56 @@ class Department:
 class DepartmentsDb:
     __departments: dict[str, Department]
     __ongoingTests: dict[str, LinkTestCase]
+    __lock: threading.Lock
 
     def __init__(self):
         self.__departments = dict()
         self.__ongoingTests = dict()
+        self.__lock = threading.Lock()
 
     def AddDepartment(self, department: Department):
-        if self.__departments.get(department.desc) is None:
-            self.__departments[department.desc] = department
+        with self.__lock:
+            if self.__departments.get(department.desc) is None:
+                self.__departments[department.desc] = department
 
     def AddToDepartment(self, departmentDesc: str, worker: Worker):
-        if self.__departments.get(departmentDesc) is not None:
-            self.__departments[departmentDesc].workers.append(worker)
+        with self.__lock:
+            if self.__departments.get(departmentDesc) is not None:
+                self.__departments[departmentDesc].workers.append(worker)
 
     def SetDepartmentInterval(self, departmentDesc: str, interval: int):
-        dep = self.__departments.get(departmentDesc)
-        if dep is not None:
-            dep.interval = interval
+        with self.__lock:
+            dep = self.__departments.get(departmentDesc)
+            if dep is not None:
+                dep.interval = interval
 
     def SetDepartmentReportPoints(self, departmentDesc: str, reportPoints: int):
-        dep = self.__departments.get(departmentDesc)
-        if dep is not None:
-            dep.reportPoints = reportPoints
+        with self.__lock:
+            dep = self.__departments.get(departmentDesc)
+            if dep is not None:
+                dep.reportPoints = reportPoints
 
     def SetDepartmentMissPoints(self, departmentDesc: str, missPoints: int):
-        dep = self.__departments.get(departmentDesc)
-        if dep is not None:
-            dep.missPoints = missPoints
+        with self.__lock:
+            dep = self.__departments.get(departmentDesc)
+            if dep is not None:
+                dep.missPoints = missPoints
 
     def SetDepartmentClickPoints(self, departmentDesc: str, clickPoints: int):
-        dep = self.__departments.get(departmentDesc)
-        if dep is not None:
-            dep.clickPoints = clickPoints
+        with self.__lock:
+            dep = self.__departments.get(departmentDesc)
+            if dep is not None:
+                dep.clickPoints = clickPoints
 
     def SetDepartmentCourseThreshold(self, departmentDesc: str, courseThreshold: int):
-        dep = self.__departments.get(departmentDesc)
-        if dep is not None:
-            dep.courseThreshold = courseThreshold
+        with self.__lock:
+            dep = self.__departments.get(departmentDesc)
+            if dep is not None:
+                dep.courseThreshold = courseThreshold
 
     def ProcessTick(self):
-        for key, dep in self.__departments.items():
-            interval = dep.interval
-            intervalInSecs = float(interval * 3600 * 24)
-            dep.ProcessTick(intervalInSecs, self.__ongoingTests)
+        with self.__lock:
+            for key, dep in self.__departments.items():
+                interval = dep.interval
+                intervalInSecs = float(interval * 3600 * 24)
+                dep.ProcessTick(intervalInSecs, self.__ongoingTests)
