@@ -1,11 +1,15 @@
 # Autor: Jakub Lisowski, Jlisowskyy
 
 import MailSendingLib as mLib
+import MainFlowLib as fLib
+import prepareBasicWorkerSet
 
 
 # Function is used to perform main functionality tests
 def LogicTest():
-    SendingTest()
+    # SendingTest()
+    FlowTests()
+
 
 # Iterates through mails contained in test fails and performs mail send
 # Functions opens ./mailList file and read from the first line smtp parameters then iterates through
@@ -17,15 +21,17 @@ def OpenSender(line) -> mLib.MailSender:
         return None
 
     return mLib.MailSender(line[0], int(line[1]))
+
+
 def SendingTest():
     lineCnt = 0;
     with open("mailList", 'r') as file:
         for line in file:
-            lineCnt+=1
+            lineCnt += 1
             line = line.strip()
 
             if lineCnt == 1:
-                sender=OpenSender(line)
+                sender = OpenSender(line)
                 continue
 
             if not line or line[0] == '#':
@@ -37,6 +43,18 @@ def SendingTest():
                 continue
 
             sender.SendMail(line[0], line[1], "Jlisowskyy@gmail.com", "test", "test")
+
+
+def FlowTests():
+    lst = prepareBasicWorkerSet.getTestSet()
+
+    db = fLib.DepartmentsDb()
+
+    db.AddDepartment(fLib.Department("HR"))
+    for worker in lst:
+        db.AddToDepartment("HR", worker)
+
+    db.ProcessTick()
 
 
 if __name__ == '__main__':
