@@ -4,51 +4,30 @@ import json
 import time
 
 import MailSendingLib as mLib
-
-# Class is used to store whole groups of workers
-
-class WorkerData:
-    def GatherInfo(self) -> str:
-        return "lack of info"
-
-
-class LinkedinData(WorkerData):
-    link: str
-
-    def __init__(self, link: str):
-        self.link = link
-
-    # TODO:
-    def GatherInfo(self):
-        return "linkedin"
-
-
-class FacebookData(WorkerData):
-    link: str
-
-    def __init__(self, link: str):
-        self.link = link
-
-    def GatherInfo(self) -> str:
-        return "fb"
-
+from DataCollection import *
+import Helpers as hp
 
 class LinkTestCase:
-    code: str
     start: float
     exp: int
+    isClicked: bool
+    isReported: bool
+
+    def __init__(self, exp: int = 3):
+        self.start = time.time()
+        self.exp = exp
+        self.isReported = False
+        self.isClicked = False
 
     def IsExpired(self) -> bool:
         expSecs = float(self.exp * 3600 * 24)
         return time.time() > expSecs + self.start
 
-    # TODO:
     def IsClicked(self) -> bool:
-        return False
+        return self.isClicked
 
-    # TODO:
     def IsReported(self) -> bool:
-        return False
+        return self.isReported
 
 
 class Worker:
@@ -75,8 +54,8 @@ class Worker:
 
 
 class Department:
-    # TODO:
-    # Notifier = mLib.CourseNotifier()
+    Notifier = mLib.Notifier("smtp.gmail.com", 465, "bhlmock1@gmail.com", "jwhybzganebqsgsl")
+    ScamSender = mLib.UserMailSender("smtp.gmail.com", 465, "bhlmock1@gmail.com", "jwhybzganebqsgsl")
 
     desc: str
     interval: int
@@ -97,8 +76,17 @@ class Department:
         self.workers = list()
 
     # TODO:
-    def PerformPhishingTest(self, worker: Worker):
-        pass
+    def PerformPhishingTest(self, worker: Worker, testDB: dict[str, LinkTestCase]):
+        test = LinkTestCase()
+
+        keyseq = hp.GenerateRandomSequence(32)
+        while testDB.get(keyseq) is not None:
+            keyseq = hp.GenerateRandomSequence(32)
+
+        testDB[keyseq] = test
+
+        link = mLib.MailSender.GenerateDummyLink(keyseq)
+
 
     # true -> test finished, false -> test ongoing
     def ProcessWorkerTestCase(self, worker: Worker, test: LinkTestCase) -> bool:
@@ -118,7 +106,7 @@ class Department:
 
     @staticmethod
     def SendNotification(worker: Worker):
-        pass
+        Department.Notifier.NotifyAboutCourse(worker.mail)
 
     def ProcessWorkerPointsStatus(self, worker: Worker):
 
@@ -141,17 +129,19 @@ class Department:
 
             worker.tests = ongoingTests
 
-    def SendTests(self, intervalInSecs: float):
+    def SendTests(self, intervalInSecs: float, testDB: dict[str, LinkTestCase]):
         for worker in self.workers:
             if worker.ShouldBeTested(intervalInSecs):
-                self.PerformPhishingTest(worker)
+                self.PerformPhishingTest(worker, testDB)
 
 
 class DepartmentsDb:
     __departments: dict[str, Department]
+    __ongoingTests: dict[str, LinkTestCase]
 
     def __init__(self):
         self.__departments = dict()
+        self.__ongoingTests = dict()
 
     def AddDepartment(self, department: Department):
         if self.__departments.get(department.desc) is None:

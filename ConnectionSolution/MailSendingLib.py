@@ -1,10 +1,8 @@
 # Autor: Jakub Lisowski, Jlisowskyy
 
 import smtplib as smtp
-import ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-
 
 # Function replaces link token inside mail content string
 def InplaceLinkInMail(emailContent: str, link: str) -> str:
@@ -48,10 +46,9 @@ class MailSender:
 
         self.SendMail(srcMail, passwd, dstMail, emailTitle, emailContent)
 
-    # TODO:
     @staticmethod
-    def GenerateDummyLink():
-        return "https://www.g00gle.com/"
+    def GenerateDummyLink(seq:str):
+        return f"127.0.0.1/{seq}"
 
 
 # Wrapping class assuming constant sending user
@@ -70,7 +67,7 @@ class UserMailSender:
 
 
 # Class used to send corporate courseMails
-class CourseNotifier:
+class Notifier:
     __sender: UserMailSender
 
     def __init__(self, server, port, mail, passwd):
@@ -78,3 +75,4 @@ class CourseNotifier:
 
     def NotifyAboutCourse(self, targetMail):
         self.__sender.SendMail("Chlopie ogarnij sie", "Powinienes udac sie na kurs z cybersecurity", targetMail)
+
