@@ -37,8 +37,6 @@
 		{"id":"cea7285b601d6c52","type":"text","text":"Langchain","x":1123,"y":1399,"width":250,"height":60},
 		{"id":"e9ade54632b875d8","type":"text","text":"Forms","x":1123,"y":1208,"width":250,"height":60},
 		{"id":"57533b5e447e403d","type":"text","text":"Linkedin Scapper","x":1122,"y":1309,"width":250,"height":60},
-		{"id":"da846931d291813c","type":"text","text":"Trzeba to wymyślić i zaprojektować","x":1429,"y":1399,"width":250,"height":60},
-		{"id":"842c59bb19388900","type":"text","text":"Wybór informacji które będą dodatkowo podane obok pracowników\n\n(ostatni post z pracy)","x":1429,"y":1255,"width":250,"height":124},
 		{"id":"2cd486ae557e0de7","type":"text","text":"Mail","x":1123,"y":1689,"width":250,"height":60},
 		{"id":"65343f193af2bdbf","type":"text","text":"SMS","x":1123,"y":1779,"width":250,"height":60},
 		{"id":"a3a3311027c06b12","x":1122,"y":1489,"width":250,"height":60,"type":"text","text":"Potencjalnie różne tryby "},
@@ -58,7 +56,9 @@
 		{"id":"59a3cb3efb102060","x":-70,"y":2823,"width":250,"height":60,"type":"text","text":"Statystyki"},
 		{"id":"9fdc9462ad4298aa","x":-720,"y":2460,"width":370,"height":503,"type":"text","text":"Lista działów firmy"},
 		{"id":"0b2052230d8f203c","x":-330,"y":2460,"width":240,"height":64,"type":"text","text":"Load Config\nSave Config\n"},
-		{"id":"ff81f46d38fbb8f5","x":740,"y":1880,"width":250,"height":60,"type":"text","text":"System pocztowy do zliczania oflagowan"}
+		{"id":"ff81f46d38fbb8f5","x":740,"y":1880,"width":250,"height":60,"type":"text","text":"System pocztowy do zliczania oflagowan"},
+		{"id":"da846931d291813c","type":"text","text":"Trzeba to wymyślić i zaprojektować","x":1429,"y":1466,"width":250,"height":60},
+		{"id":"842c59bb19388900","type":"text","text":"Wybór informacji które będą dodatkowo podane obok pracowników\n\n(ostatni post z pracy)","x":1429,"y":1235,"width":250,"height":171}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
