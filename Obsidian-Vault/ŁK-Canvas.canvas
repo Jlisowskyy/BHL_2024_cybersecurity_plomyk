@@ -7,7 +7,6 @@
 		{"id":"ecd3c12b5f08507e","type":"group","x":-720,"y":1560,"width":420,"height":458,"color":"1","label":"Typ Testu"},
 		{"id":"e3b1c5ec99be319e","type":"group","x":1160,"y":-37,"width":302,"height":513,"color":"2","label":"Pomysły"},
 		{"id":"d4bc43cf0629be5e","type":"group","x":-260,"y":1560,"width":499,"height":184,"color":"1","label":"Medium Testu"},
-		{"id":"9fdc9462ad4298aa","x":-750,"y":2697,"width":250,"height":60,"type":"text","text":""},
 		{"id":"8b8cdac17a7f0ad0","type":"text","text":"Codziennie mini szkolenia z phishingu (interaktywna gierka - typu 2/3 maile zmieszane z niedobrymi mailami, i masz tylko powiedziec tak lub nie, i odpala ci sie na np 10 s)","x":1180,"y":-17,"width":250,"height":240},
 		{"id":"326255d1ec9d4f0a","type":"text","text":"#### Content Injection\n- Przechwytujemy paczki w sieci i doczepiamy do nich naszą własną zawartość","x":-719,"y":-20,"width":260,"height":220},
 		{"id":"a5ddd5db0d00d876","type":"text","text":"#### Exploit Public-Facing Application\nMamy publiczny dostęp do aplikacji -> np socket.\nW sockecie jest jakiś błąd / słabość -> exploitujemy ja","x":-419,"y":-20,"width":330,"height":240},
@@ -49,7 +48,10 @@
 		{"id":"6de9566aa4e8e4d2","x":1820,"y":1466,"width":250,"height":60,"color":"6","type":"text","text":"Piotr"},
 		{"id":"b5e599ff81c45bf5","x":1820,"y":1547,"width":250,"height":60,"color":"4","type":"text","text":"Michał"},
 		{"id":"ef1e2b5a5bff32e5","type":"text","text":"Pipeline generacji wiadomości","x":740,"y":1526,"width":250,"height":60},
-		{"id":"4bba8c578a5f58e3","type":"text","text":"Web Scrapping","x":740,"y":1406,"width":250,"height":60}
+		{"id":"4bba8c578a5f58e3","type":"text","text":"Web Scrapping","x":740,"y":1406,"width":250,"height":60},
+		{"id":"9fdc9462ad4298aa","x":-750,"y":2697,"width":634,"height":503,"type":"text","text":"Lista Osób"},
+		{"id":"589b43606d17c688","x":-100,"y":2701,"width":250,"height":119,"type":"text","text":"Typ Testu"},
+		{"id":"527396b7f7d9aeac","x":-100,"y":2840,"width":250,"height":109,"type":"text","text":"Medium Testu"}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
