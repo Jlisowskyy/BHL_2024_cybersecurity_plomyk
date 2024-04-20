@@ -8,6 +8,7 @@ from DataCollection import *
 import MailGenerator as mg
 import Helpers as hp
 
+
 class LinkTestCase:
     start: float
     exp: int
@@ -118,9 +119,12 @@ class Department:
             worker.points = 0
             return
 
+    def ProcessTick(self, intervalInSecs: float, testDB: dict[str, LinkTestCase]):
 
-    def CheckTests(self):
         for worker in self.workers:
+            if worker.ShouldBeTested(intervalInSecs):
+                self.PerformPhishingTest(worker, testDB)
+
             ongoingTests = list()
 
             for test in worker.tests:
@@ -130,11 +134,6 @@ class Department:
                     ongoingTests.append(test)
 
             worker.tests = ongoingTests
-
-    def SendTests(self, intervalInSecs: float, testDB: dict[str, LinkTestCase]):
-        for worker in self.workers:
-            if worker.ShouldBeTested(intervalInSecs):
-                self.PerformPhishingTest(worker, testDB)
 
 
 class DepartmentsDb:
@@ -182,4 +181,4 @@ class DepartmentsDb:
         for key, dep in self.__departments.items():
             interval = dep.interval
             intervalInSecs = float(interval * 3600 * 24)
-            dep.SendTests(intervalInSecs)
+            dep.ProcessTick(intervalInSecs, self.__ongoingTests)
