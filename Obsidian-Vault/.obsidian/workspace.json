@@ -19,11 +19,14 @@
             "id": "1fe8a6ad12216c90",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Init.md",
-                "mode": "source",
-                "source": false
+                "file": "Untitled.canvas",
+                "viewState": {
+                  "x": 971.210874830542,
+                  "y": 152.2585886855419,
+                  "zoom": -0.9999999999999999
+                }
               }
             }
           }
@@ -94,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Init.md",
+                "file": "Untitled.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Init.md",
+                "file": "Untitled.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Init.md"
+                "file": "Untitled.canvas"
               }
             }
           }
@@ -158,6 +161,8 @@
   },
   "active": "1fe8a6ad12216c90",
   "lastOpenFiles": [
+    "Init.md",
+    "Untitled.canvas",
     "Italian A1/Lesson 5.md",
     "Italian A1/Lesson 4.md",
     "Pasted image 20240405133336.png",
@@ -169,9 +174,7 @@
     "Pasted image 20240322130618.png",
     "2024-03-04.md",
     "Zmienne Losowe.md",
-    "Init.md",
     "Prawdopodobieństwo i jego własności.md",
-    "Untitled.canvas",
     "Untitled 1.canvas",
     "Pasted image 20240211223703.png",
     "Pasted image 20240211223617.png",
