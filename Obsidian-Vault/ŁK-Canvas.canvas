@@ -2,7 +2,7 @@
 	"nodes":[
 		{"id":"2375da25a20ba382","type":"group","x":-740,"y":1188,"width":1329,"height":1172,"color":"3","label":"Flow"},
 		{"id":"ca9b6de8979cb403","type":"group","x":-740,"y":-37,"width":1261,"height":1017,"color":"4","label":"Initial Access"},
-		{"id":"2a5b598b7d5e5e60","type":"group","x":-1378,"y":1195,"width":418,"height":519,"color":"2","label":"Presentation Points"},
+		{"id":"2a5b598b7d5e5e60","type":"group","x":-1660,"y":1195,"width":600,"height":519,"color":"2","label":"Presentation Points"},
 		{"id":"ecd3c12b5f08507e","type":"group","x":-720,"y":1560,"width":420,"height":458,"color":"1","label":"Typ Testu"},
 		{"id":"e3b1c5ec99be319e","type":"group","x":1160,"y":-37,"width":302,"height":513,"color":"2","label":"Pomysły"},
 		{"id":"d4bc43cf0629be5e","type":"group","x":-260,"y":1560,"width":499,"height":184,"color":"1","label":"Medium Testu"},
@@ -42,7 +42,8 @@
 		{"id":"2cd486ae557e0de7","type":"text","text":"Mail","x":1154,"y":1620,"width":250,"height":60},
 		{"id":"65343f193af2bdbf","type":"text","text":"SMS","x":1154,"y":1710,"width":250,"height":60},
 		{"id":"83d0fab4ddee9e60","type":"text","text":"Moduł wysyłania wiadomości ","x":771,"y":1645,"width":250,"height":75},
-		{"id":"a3a3311027c06b12","x":1133,"y":1486,"width":250,"height":60,"type":"text","text":"Potencjalnie różne tryby "}
+		{"id":"a3a3311027c06b12","x":1153,"y":1420,"width":250,"height":60,"type":"text","text":"Potencjalnie różne tryby "},
+		{"id":"d0040e1c3c02384a","x":-1640,"y":1215,"width":250,"height":166,"type":"text","text":"### Zalety\njedno kliknięcie\nspersonalizowane dane\nskalowalne (bo ai)"}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
