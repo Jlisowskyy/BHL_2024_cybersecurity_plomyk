@@ -19,7 +19,8 @@
 		{"id":"c4c104b96c3aee6d","x":-695,"y":1540,"width":250,"height":60,"color":"1","type":"text","text":"Wybór typu testu"},
 		{"id":"9bf7802603a41ba9","x":-860,"y":1682,"width":250,"height":60,"type":"text","text":"Mail"},
 		{"id":"7d623b92da4990ad","x":-651,"y":1766,"width":250,"height":60,"type":"text","text":"Sms"},
-		{"id":"cf7d4049ca787316","x":-643,"y":1968,"width":250,"height":60,"type":"text","text":""}
+		{"id":"cf7d4049ca787316","x":-651,"y":1940,"width":250,"height":60,"type":"text","text":"Przygotowanie Phishing wiadomości"},
+		{"id":"23d657e231aff7ac","x":-650,"y":2039,"width":250,"height":60,"type":"text","text":"Wysłanie jej"}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
@@ -30,6 +31,7 @@
 		{"id":"3f77a04bc2bc7639","fromNode":"c4c104b96c3aee6d","fromSide":"bottom","toNode":"9bf7802603a41ba9","toSide":"top"},
 		{"id":"2ee7278c8d514c01","fromNode":"c4c104b96c3aee6d","fromSide":"bottom","toNode":"7d623b92da4990ad","toSide":"top"},
 		{"id":"64156954b0e4687d","fromNode":"8293483f7e606ec6","fromSide":"left","toNode":"d4bc43cf0629be5e","toSide":"right"},
-		{"id":"e682f110e095d4a0","fromNode":"d4bc43cf0629be5e","fromSide":"bottom","toNode":"cf7d4049ca787316","toSide":"top"}
+		{"id":"e682f110e095d4a0","fromNode":"d4bc43cf0629be5e","fromSide":"bottom","toNode":"cf7d4049ca787316","toSide":"top"},
+		{"id":"354a5ab0324a6ad0","fromNode":"cf7d4049ca787316","fromSide":"bottom","toNode":"23d657e231aff7ac","toSide":"top"}
 	]
 }
