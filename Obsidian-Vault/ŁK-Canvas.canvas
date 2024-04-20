@@ -56,7 +56,7 @@
 		{"id":"0b2052230d8f203c","x":-360,"y":2697,"width":240,"height":64,"type":"text","text":"Load Config\nSave Config\n"},
 		{"id":"01c2688930245b3c","x":-360,"y":2776,"width":240,"height":64,"type":"text","text":"Interval (Co ile powtarzac)"},
 		{"id":"59a3cb3efb102060","x":-100,"y":3060,"width":250,"height":60,"type":"text","text":"Statystyki"},
-		{"id":"60b03504db838d50","x":-360,"y":2864,"width":240,"height":176,"type":"text","text":"Punktacja:\nPkty az"}
+		{"id":"60b03504db838d50","x":-360,"y":2864,"width":240,"height":226,"type":"text","text":"Punktacja:\nPkty za zgloszenie:\nPkty za zignorowanie:\nPkty za nabranie sie:\n\nPkty od ktorych przechodzisz na szkolenie"}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
