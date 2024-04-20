@@ -1,0 +1,18 @@
+{
+  "hotkeys": [
+    {
+      "command": "obsidian-emoji-toolbar:emoji-picker:open-picker",
+      "chords": [
+        "A-KeyE",
+        "KeyP"
+      ]
+    },
+    {
+      "command": "editor:insert-wikilink",
+      "chords": [
+        "A-KeyA",
+        "KeyL"
+      ]
+    }
+  ]
+}
