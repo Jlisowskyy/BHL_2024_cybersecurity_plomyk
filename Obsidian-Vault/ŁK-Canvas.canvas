@@ -30,18 +30,19 @@
 		{"id":"25d70f9000943832","type":"text","text":"User Interface","x":771,"y":1199,"width":250,"height":60},
 		{"id":"4bba8c578a5f58e3","type":"text","text":"Web Scrapping","x":771,"y":1280,"width":250,"height":60},
 		{"id":"ef1e2b5a5bff32e5","type":"text","text":"Pipeline generacji wiadomości","x":771,"y":1360,"width":250,"height":60},
-		{"id":"83d0fab4ddee9e60","type":"text","text":"Moduł wysyłania wiadomości ","x":771,"y":1445,"width":250,"height":75},
-		{"id":"2cd486ae557e0de7","type":"text","text":"Mail","x":1154,"y":1420,"width":250,"height":60},
 		{"id":"650be047dc579c79","type":"text","text":"Dla kogo: Red Teamy","x":-1358,"y":1215,"width":250,"height":60},
 		{"id":"ac5df3bffde1168d","type":"text","text":"Najczęstszymi atakami są phishingi","x":-1358,"y":1299,"width":250,"height":60},
 		{"id":"71b4fc553064ae07","type":"text","text":"Najskuteczniej trenować ludzi do rozpoznawania phishingu niż stosować inne rozwiązania (np wykrywające phishing) ","x":-1358,"y":1381,"width":250,"height":159},
 		{"id":"36cf2f50bbf35209","type":"text","text":"state-of-the-art narzędzia do trenowania ludzi są słabe","x":-1358,"y":1570,"width":250,"height":124},
-		{"id":"cea7285b601d6c52","x":1154,"y":1330,"width":250,"height":60,"type":"text","text":"Langchain"},
-		{"id":"e9ade54632b875d8","x":1154,"y":1139,"width":250,"height":60,"type":"text","text":"Forms"},
-		{"id":"57533b5e447e403d","x":1153,"y":1240,"width":250,"height":60,"type":"text","text":"Linkedin Scapper"},
-		{"id":"da846931d291813c","x":1460,"y":1330,"width":250,"height":60,"type":"text","text":"Trzeba to wymyślić i zaprojektować"},
-		{"id":"65343f193af2bdbf","type":"text","text":"SMS","x":1154,"y":1510,"width":250,"height":60},
-		{"id":"842c59bb19388900","x":1465,"y":1156,"width":250,"height":60,"type":"text","text":"Wybór informacji które będą obok "}
+		{"id":"cea7285b601d6c52","type":"text","text":"Langchain","x":1154,"y":1330,"width":250,"height":60},
+		{"id":"e9ade54632b875d8","type":"text","text":"Forms","x":1154,"y":1139,"width":250,"height":60},
+		{"id":"57533b5e447e403d","type":"text","text":"Linkedin Scapper","x":1153,"y":1240,"width":250,"height":60},
+		{"id":"da846931d291813c","type":"text","text":"Trzeba to wymyślić i zaprojektować","x":1460,"y":1330,"width":250,"height":60},
+		{"id":"842c59bb19388900","type":"text","text":"Wybór informacji które będą dodatkowo podane obok pracowników","x":1460,"y":1186,"width":250,"height":124},
+		{"id":"2cd486ae557e0de7","type":"text","text":"Mail","x":1154,"y":1620,"width":250,"height":60},
+		{"id":"65343f193af2bdbf","type":"text","text":"SMS","x":1154,"y":1710,"width":250,"height":60},
+		{"id":"83d0fab4ddee9e60","type":"text","text":"Moduł wysyłania wiadomości ","x":771,"y":1645,"width":250,"height":75},
+		{"id":"a3a3311027c06b12","x":1133,"y":1486,"width":250,"height":60,"type":"text","text":""}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
@@ -61,6 +62,8 @@
 		{"id":"ce5359ee1e7fb04d","fromNode":"ef1e2b5a5bff32e5","fromSide":"right","toNode":"cea7285b601d6c52","toSide":"left"},
 		{"id":"e7ba88e9b9207913","fromNode":"25d70f9000943832","fromSide":"right","toNode":"e9ade54632b875d8","toSide":"left"},
 		{"id":"054fe90e858f6a30","fromNode":"4bba8c578a5f58e3","fromSide":"right","toNode":"57533b5e447e403d","toSide":"left"},
-		{"id":"b42e27a4969edca7","fromNode":"cea7285b601d6c52","fromSide":"right","toNode":"da846931d291813c","toSide":"left"}
+		{"id":"b42e27a4969edca7","fromNode":"cea7285b601d6c52","fromSide":"right","toNode":"da846931d291813c","toSide":"left"},
+		{"id":"a3d825793763d5f3","fromNode":"57533b5e447e403d","fromSide":"right","toNode":"842c59bb19388900","toSide":"left"},
+		{"id":"9256fa9e29cf3306","fromNode":"cea7285b601d6c52","fromSide":"bottom","toNode":"a3a3311027c06b12","toSide":"top"}
 	]
 }
