@@ -57,7 +57,8 @@
 		{"id":"d324eb5142b46454","x":-70,"y":2740,"width":250,"height":60,"type":"text","text":"send"},
 		{"id":"59a3cb3efb102060","x":-70,"y":2823,"width":250,"height":60,"type":"text","text":"Statystyki"},
 		{"id":"9fdc9462ad4298aa","x":-720,"y":2460,"width":370,"height":503,"type":"text","text":"Lista działów firmy"},
-		{"id":"0b2052230d8f203c","x":-330,"y":2460,"width":240,"height":64,"type":"text","text":"Load Config\nSave Config\n"}
+		{"id":"0b2052230d8f203c","x":-330,"y":2460,"width":240,"height":64,"type":"text","text":"Load Config\nSave Config\n"},
+		{"id":"ff81f46d38fbb8f5","x":740,"y":1880,"width":250,"height":60,"type":"text","text":"System pocztowy do zliczania oflagowan"}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
