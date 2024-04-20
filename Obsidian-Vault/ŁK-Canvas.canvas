@@ -2,6 +2,7 @@
 	"nodes":[
 		{"id":"2375da25a20ba382","type":"group","x":-740,"y":1188,"width":1329,"height":1172,"color":"3","label":"Flow"},
 		{"id":"ca9b6de8979cb403","type":"group","x":-740,"y":-37,"width":1261,"height":1017,"color":"4","label":"Initial Access"},
+		{"id":"2a5b598b7d5e5e60","type":"group","x":-1378,"y":1195,"width":418,"height":519,"color":"2","label":"Presentation Points"},
 		{"id":"ecd3c12b5f08507e","type":"group","x":-720,"y":1560,"width":420,"height":458,"color":"1","label":"Typ Testu"},
 		{"id":"e3b1c5ec99be319e","type":"group","x":1160,"y":-37,"width":302,"height":513,"color":"2","label":"Pomysły"},
 		{"id":"d4bc43cf0629be5e","type":"group","x":-260,"y":1560,"width":499,"height":184,"color":"1","label":"Medium Testu"},
@@ -26,16 +27,17 @@
 		{"id":"cf7d4049ca787316","type":"text","text":"Przygotowanie malicious wiadomości","x":-116,"y":2140,"width":250,"height":60},
 		{"id":"8293483f7e606ec6","type":"text","text":"Dane kontekstowe na temat pracownika i jego ostatnich aktywności","x":319,"y":1694,"width":250,"height":95},
 		{"id":"23d657e231aff7ac","type":"text","text":"Wysłanie jej","x":-116,"y":2280,"width":250,"height":60},
-		{"id":"25d70f9000943832","x":771,"y":1199,"width":250,"height":60,"type":"text","text":"User Interface"},
-		{"id":"4bba8c578a5f58e3","x":771,"y":1280,"width":250,"height":60,"type":"text","text":"Web Scrapping"},
-		{"id":"ef1e2b5a5bff32e5","x":771,"y":1360,"width":250,"height":60,"type":"text","text":"Pipeline generacji wiadomości"},
-		{"id":"83d0fab4ddee9e60","x":771,"y":1445,"width":250,"height":75,"type":"text","text":"Moduł wysyłania wiadomości "},
-		{"id":"2cd486ae557e0de7","x":1154,"y":1420,"width":250,"height":60,"type":"text","text":"Mail"},
-		{"id":"65343f193af2bdbf","x":1154,"y":1490,"width":250,"height":60,"type":"text","text":"SMS"},
-		{"id":"650be047dc579c79","x":-1358,"y":1215,"width":250,"height":60,"type":"text","text":"Dla kogo: Red Teamy"},
-		{"id":"ac5df3bffde1168d","x":-1358,"y":1299,"width":250,"height":60,"type":"text","text":"Najczęstszymi atakami są phishingi"},
-		{"id":"71b4fc553064ae07","x":-1358,"y":1381,"width":250,"height":159,"type":"text","text":"Najskuteczniej trenować ludzi do rozpoznawania phishingu niż stosować inne rozwiązania (np wykrywające phishing) "},
-		{"id":"36cf2f50bbf35209","x":-1358,"y":1570,"width":250,"height":60,"type":"text","text":"Narzędzia do trenowania ludzi s"}
+		{"id":"25d70f9000943832","type":"text","text":"User Interface","x":771,"y":1199,"width":250,"height":60},
+		{"id":"4bba8c578a5f58e3","type":"text","text":"Web Scrapping","x":771,"y":1280,"width":250,"height":60},
+		{"id":"ef1e2b5a5bff32e5","type":"text","text":"Pipeline generacji wiadomości","x":771,"y":1360,"width":250,"height":60},
+		{"id":"83d0fab4ddee9e60","type":"text","text":"Moduł wysyłania wiadomości ","x":771,"y":1445,"width":250,"height":75},
+		{"id":"2cd486ae557e0de7","type":"text","text":"Mail","x":1154,"y":1420,"width":250,"height":60},
+		{"id":"65343f193af2bdbf","type":"text","text":"SMS","x":1154,"y":1490,"width":250,"height":60},
+		{"id":"650be047dc579c79","type":"text","text":"Dla kogo: Red Teamy","x":-1358,"y":1215,"width":250,"height":60},
+		{"id":"ac5df3bffde1168d","type":"text","text":"Najczęstszymi atakami są phishingi","x":-1358,"y":1299,"width":250,"height":60},
+		{"id":"71b4fc553064ae07","type":"text","text":"Najskuteczniej trenować ludzi do rozpoznawania phishingu niż stosować inne rozwiązania (np wykrywające phishing) ","x":-1358,"y":1381,"width":250,"height":159},
+		{"id":"36cf2f50bbf35209","type":"text","text":"state-of-the-art narzędzia do trenowania ludzi są słabe","x":-1358,"y":1570,"width":250,"height":124},
+		{"id":"cea7285b601d6c52","x":1169,"y":1304,"width":250,"height":60,"type":"text","text":""}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
@@ -51,6 +53,7 @@
 		{"id":"46f83f9220866c94","fromNode":"ecd3c12b5f08507e","fromSide":"bottom","toNode":"cf7d4049ca787316","toSide":"left"},
 		{"id":"77dc8a22bf4298ae","fromNode":"c4c104b96c3aee6d","fromSide":"bottom","toNode":"ecd3c12b5f08507e","toSide":"top"},
 		{"id":"6869b8739e16f3f9","fromNode":"83d0fab4ddee9e60","fromSide":"right","toNode":"2cd486ae557e0de7","toSide":"left"},
-		{"id":"9b4c4c6036b94d6b","fromNode":"83d0fab4ddee9e60","fromSide":"right","toNode":"65343f193af2bdbf","toSide":"left"}
+		{"id":"9b4c4c6036b94d6b","fromNode":"83d0fab4ddee9e60","fromSide":"right","toNode":"65343f193af2bdbf","toSide":"left"},
+		{"id":"ce5359ee1e7fb04d","fromNode":"ef1e2b5a5bff32e5","fromSide":"right","toNode":"cea7285b601d6c52","toSide":"left"}
 	]
 }
