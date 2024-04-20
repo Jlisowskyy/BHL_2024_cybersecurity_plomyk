@@ -55,7 +55,8 @@
 		{"id":"d324eb5142b46454","x":-100,"y":2980,"width":250,"height":60,"type":"text","text":"send"},
 		{"id":"0b2052230d8f203c","x":-360,"y":2697,"width":240,"height":64,"type":"text","text":"Load Config\nSave Config\n"},
 		{"id":"01c2688930245b3c","x":-360,"y":2776,"width":240,"height":64,"type":"text","text":"Interval (Co ile powtarzac)"},
-		{"id":"59a3cb3efb102060","x":-360,"y":2867,"width":240,"height":55,"type":"text","text":"Statystyki"}
+		{"id":"59a3cb3efb102060","x":-100,"y":3060,"width":250,"height":60,"type":"text","text":"Statystyki"},
+		{"id":"60b03504db838d50","x":-360,"y":2864,"width":240,"height":176,"type":"text","text":"Punktacja:\nPkty az"}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
