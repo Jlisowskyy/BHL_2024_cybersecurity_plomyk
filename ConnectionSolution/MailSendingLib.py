@@ -53,13 +53,14 @@ class MailSender:
     def GenerateDummyLink():
         return "https://www.g00gle.com/"
 
+
 # Wrapping class assuming constant sending user
 class UserMailSender:
     __srcMail: str
     __srcPasswd: str
     __sender: MailSender
 
-    def __init__(self, server: str, port:int, mail:str, passwd:str):
+    def __init__(self, server: str, port: int, mail: str, passwd: str):
         self.__srcMail = mail
         self.__srcPasswd = passwd
         self.__sender = MailSender(server, port)
@@ -67,9 +68,10 @@ class UserMailSender:
     def SendMail(self, emailTitle: str, emailContent: str, dstMail: str, link: str = ""):
         self.__sender.SendPreparedEmail(emailTitle, emailContent, self.__srcMail, dstMail, self.__srcPasswd, link)
 
+
 # Class used to send corporate courseMails
 class CourseNotifier:
-    __sender : UserMailSender
+    __sender: UserMailSender
 
     def __init__(self, server, port, mail, passwd):
         self.__sender = UserMailSender(server, port, mail, passwd)

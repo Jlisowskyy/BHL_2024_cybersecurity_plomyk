@@ -33,7 +33,7 @@ class FacebookData(WorkerData):
         return "fb"
 
 
-class TestCase:
+class LinkTestCase:
     code: str
     start: float
     exp: int
@@ -57,7 +57,7 @@ class Worker:
     mail: str
     dataset: list[WorkerData]
     lastTest: float
-    tests: list[TestCase]
+    tests: list[LinkTestCase]
 
     def __init__(self, name: str, surname: str, mail: str, dataset: list[WorkerData], points=0, lastTest=time.time()):
         self.name = name
@@ -101,7 +101,7 @@ class Department:
         pass
 
     # true -> test finished, false -> test ongoing
-    def ProcessWorkerTestCase(self, worker: Worker, test: TestCase) -> bool:
+    def ProcessWorkerTestCase(self, worker: Worker, test: LinkTestCase) -> bool:
         if test.IsClicked():
             worker.points += self.clickPoints
             return True

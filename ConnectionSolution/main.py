@@ -7,7 +7,7 @@ import prepareBasicWorkerSet
 
 # Function is used to perform main functionality tests
 def LogicTest():
-    # SendingTest()
+    SendingTest()
     FlowTests()
 
 
@@ -48,7 +48,7 @@ def SendingTest():
             if len(line) != 2:
                 continue
 
-            sender.SendMail(line[0], line[1], "Jlisowskyy@gmail.com", "test", "test")
+            sender.SendMail(line[0], line[1], "verscup@gmail.com", "test", "test")
 
 
 # Function performs tests of departments database
