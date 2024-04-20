@@ -3,6 +3,7 @@
 import json
 import time
 
+import MailSendingLib as mLib
 
 # Class is used to store whole groups of workers
 
@@ -17,6 +18,7 @@ class LinkedinData(WorkerData):
     def __init__(self, link: str):
         self.link = link
 
+    # TODO:
     def GatherInfo(self):
         return "linkedin"
 
@@ -40,11 +42,14 @@ class TestCase:
         expSecs = float(self.exp * 3600 * 24)
         return time.time() > expSecs + self.start
 
+    # TODO:
     def IsClicked(self) -> bool:
         return False
 
+    # TODO:
     def IsReported(self) -> bool:
         return False
+
 
 class Worker:
     name: str
@@ -63,12 +68,16 @@ class Worker:
         self.lastTest = lastTest
         self.tests = list()
 
-    def TestTime(self, interval: float) -> bool:
+    # TODO: Scale time accordingly to actual user points
+    def ShouldBeTested(self, interval: float) -> bool:
         actTime = time.time()
         return (actTime - self.lastTest) > interval
 
 
 class Department:
+    # TODO:
+    # Notifier = mLib.CourseNotifier()
+
     desc: str
     interval: int
     reportPoints: int
@@ -87,19 +96,55 @@ class Department:
         self.courseThreshold = courceThreshold
         self.workers = list()
 
+    # TODO:
     def PerformPhishingTest(self, worker: Worker):
         pass
 
+    # true -> test finished, false -> test ongoing
+    def ProcessWorkerTestCase(self, worker: Worker, test: TestCase) -> bool:
+        if test.IsClicked():
+            worker.points += self.clickPoints
+            return True
+
+        if test.IsExpired():
+            worker.points += self.missPoints
+            return True
+
+        if test.IsReported():
+            worker.points += self.reportPoints
+            return True
+
+        return False
 
     @staticmethod
-    def ProcessWorkerTestCase(worker: Worker, test: TestCase):
+    def SendNotification(worker: Worker):
         pass
+
+    def ProcessWorkerPointsStatus(self, worker: Worker):
+
+        # Worker should attend to cybersecurity courses
+        if worker.points < self.courseThreshold:
+            self.SendNotification(worker)
+            worker.points = 0
+            return
+
+
     def CheckTests(self):
         for worker in self.workers:
+            ongoingTests = list()
+
             for test in worker.tests:
-                self.ProcessWorkerTestCase(worker, test)
+                if self.ProcessWorkerTestCase(worker, test):
+                    self.ProcessWorkerPointsStatus(worker)
+                else:
+                    ongoingTests.append(test)
 
+            worker.tests = ongoingTests
 
+    def SendTests(self, intervalInSecs: float):
+        for worker in self.workers:
+            if worker.ShouldBeTested(intervalInSecs):
+                self.PerformPhishingTest(worker)
 
 
 class DepartmentsDb:
@@ -145,7 +190,4 @@ class DepartmentsDb:
         for key, dep in self.__departments.items():
             interval = dep.interval
             intervalInSecs = float(interval * 3600 * 24)
-
-            for worker in dep.workers:
-                if worker.TestTime(intervalInSecs):
-                    worker.PerformPhishingTest()
+            dep.SendTests(intervalInSecs)
