@@ -9,7 +9,7 @@
 		{"id":"3370f90ee5fda214","x":-719,"y":280,"width":499,"height":360,"type":"text","text":"#### External Remote Services\nW sieci firmowej masz VPN'a -> jeśli masz dostęp do VPN'a to masz dostęp do firmowych wewnętrznych rzeczy -> Uzyskaj dostęp do VPN'a jest zajebiście\n\nSposoby: Ukradnij komuś credentiale (zdobądz valid account)\n\n\"Access may also be gained through an exposed service that doesn’t require authentication. In containerized environments, this may include an exposed Docker API, Kubernetes API server, kubelet, or web application such as the Kubernetes dashboard.\""},
 		{"id":"5baa88cc7c5574a7","x":-184,"y":280,"width":364,"height":196,"type":"text","text":"#### Phishing\nNabieramy ludzi (np przez mail, sms) aby weszli na jakąś stronkę/pobrali jakiś plik/wpisali jakiś kod etc. Tak abyśmy uzyskali dzięki nim większy dostęp"},
 		{"id":"716bce7d0be1879d","x":-182,"y":541,"width":362,"height":279,"type":"text","text":"#### Replication Through Removable Media\nWrzuć malware na np pendrive.\npodlaczysz pendrive -> od razu wykonuje sie zly kod.\n\n**virus na twoim pc może potem automatycznie zarażać inne pendrive zeby rozszerzac virus**"},
-		{"id":"a1b413d11b9b62c4","x":-785,"y":671,"width":326,"height":249,"type":"text","text":"#### Trusted Relationship\nCzęsto w naszym systemie istnieją osoby trzecie które mają jakiś elevated privilage"}
+		{"id":"a1b413d11b9b62c4","x":-719,"y":681,"width":326,"height":249,"type":"text","text":"#### Trusted Relationship\nCzęsto w naszym systemie istnieją osoby trzecie które mają jakiś elevated privilage. Zhackuj admina -> dorwiesz klientów"}
 	],
 	"edges":[]
 }
