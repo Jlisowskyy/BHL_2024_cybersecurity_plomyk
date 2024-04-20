@@ -42,7 +42,7 @@
 		{"id":"2cd486ae557e0de7","type":"text","text":"Mail","x":1154,"y":1620,"width":250,"height":60},
 		{"id":"65343f193af2bdbf","type":"text","text":"SMS","x":1154,"y":1710,"width":250,"height":60},
 		{"id":"83d0fab4ddee9e60","type":"text","text":"Moduł wysyłania wiadomości ","x":771,"y":1645,"width":250,"height":75},
-		{"id":"a3a3311027c06b12","x":1133,"y":1486,"width":250,"height":60,"type":"text","text":""}
+		{"id":"a3a3311027c06b12","x":1133,"y":1486,"width":250,"height":60,"type":"text","text":"Potencjalnie różne tryby "}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
