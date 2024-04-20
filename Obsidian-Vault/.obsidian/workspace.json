@@ -21,11 +21,11 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Untitled.canvas",
+                "file": "ŁK-Canvas.canvas",
                 "viewState": {
-                  "x": 971.210874830542,
-                  "y": 152.2585886855419,
-                  "zoom": -0.9999999999999999
+                  "x": -79.1347727163577,
+                  "y": 198.4145681406661,
+                  "zoom": -0.20000000000000007
                 }
               }
             }
@@ -97,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled.canvas",
+                "file": "ŁK-Canvas.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled.canvas",
+                "file": "ŁK-Canvas.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled.canvas"
+                "file": "ŁK-Canvas.canvas"
               }
             }
           }
@@ -159,10 +159,10 @@
       "obsidian-full-calendar:Open Full Calendar": false
     }
   },
-  "active": "1fe8a6ad12216c90",
+  "active": "ac9013267fa611b6",
   "lastOpenFiles": [
     "Init.md",
-    "Untitled.canvas",
+    "ŁK-Canvas.canvas",
     "Italian A1/Lesson 5.md",
     "Italian A1/Lesson 4.md",
     "Pasted image 20240405133336.png",
