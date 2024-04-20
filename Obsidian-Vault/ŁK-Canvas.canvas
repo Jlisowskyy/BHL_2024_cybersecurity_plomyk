@@ -8,7 +8,7 @@
 		{"id":"9ae1e4b9e68564a5","type":"text","text":"#### Drive-by Compromise\n- Stronka na którą wszedłeś ma  malicious javascript który coś ci haksuje","x":-59,"y":-17,"width":340,"height":177},
 		{"id":"3370f90ee5fda214","x":-719,"y":280,"width":499,"height":360,"type":"text","text":"#### External Remote Services\nW sieci firmowej masz VPN'a -> jeśli masz dostęp do VPN'a to masz dostęp do firmowych wewnętrznych rzeczy -> Uzyskaj dostęp do VPN'a jest zajebiście\n\nSposoby: Ukradnij komuś credentiale (zdobądz valid account)\n\n\"Access may also be gained through an exposed service that doesn’t require authentication. In containerized environments, this may include an exposed Docker API, Kubernetes API server, kubelet, or web application such as the Kubernetes dashboard.\""},
 		{"id":"5baa88cc7c5574a7","x":-184,"y":280,"width":364,"height":196,"type":"text","text":"#### Phishing\nNabieramy ludzi (np przez mail, sms) aby weszli na jakąś stronkę/pobrali jakiś plik/wpisali jakiś kod etc. Tak abyśmy uzyskali dzięki nim większy dostęp"},
-		{"id":"716bce7d0be1879d","x":-182,"y":541,"width":362,"height":179,"type":"text","text":"#### Replication Through Removable Media\nWrzuć malware na np pendrive.\npodlaczysz pendrive -> od razu wykonuje sie zly kod"}
+		{"id":"716bce7d0be1879d","x":-182,"y":541,"width":362,"height":179,"type":"text","text":"#### Replication Through Removable Media\nWrzuć malware na np pendrive.\npodlaczysz pendrive -> od razu wykonuje sie zly kod.\n\n*ZLy kod na twoim pc może potem automatycznie zarażać inne pendrive*"}
 	],
 	"edges":[]
 }
