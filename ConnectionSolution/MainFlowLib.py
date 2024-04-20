@@ -13,6 +13,7 @@ class WorkerData:
 
 class LinkedinData(WorkerData):
     link: str
+
     def __init__(self, link: str):
         self.link = link
 
@@ -22,6 +23,7 @@ class LinkedinData(WorkerData):
 
 class FacebookData(WorkerData):
     link: str
+
     def __init__(self, link: str):
         self.link = link
 
@@ -29,12 +31,28 @@ class FacebookData(WorkerData):
         return "fb"
 
 
+class TestCase:
+    code: str
+    start: float
+    exp: int
+
+    def IsExpired(self) -> bool:
+        expSecs = float(self.exp * 3600 * 24)
+        return time.time() > expSecs + self.start
+
+    def IsClicked(self) -> bool:
+        return False
+
+    def IsReported(self) -> bool:
+        return False
+
 class Worker:
-    name:str
-    surname:str
-    mail:str
+    name: str
+    surname: str
+    mail: str
     dataset: list[WorkerData]
     lastTest: float
+    tests: list[TestCase]
 
     def __init__(self, name: str, surname: str, mail: str, dataset: list[WorkerData], points=0, lastTest=time.time()):
         self.name = name
@@ -43,9 +61,7 @@ class Worker:
         self.dataset = dataset
         self.points = points
         self.lastTest = lastTest
-
-    def PerformPhishingTest(self):
-        pass
+        self.tests = list()
 
     def TestTime(self, interval: float) -> bool:
         actTime = time.time()
@@ -56,7 +72,7 @@ class Department:
     desc: str
     interval: int
     reportPoints: int
-    missPoinst: int
+    missPoints: int
     clickPoints: int
     courseThreshold: int
     workers: list[Worker]
@@ -71,15 +87,31 @@ class Department:
         self.courseThreshold = courceThreshold
         self.workers = list()
 
+    def PerformPhishingTest(self, worker: Worker):
+        pass
+
+
+    @staticmethod
+    def ProcessWorkerTestCase(worker: Worker, test: TestCase):
+        pass
+    def CheckTests(self):
+        for worker in self.workers:
+            for test in worker.tests:
+                self.ProcessWorkerTestCase(worker, test)
+
+
+
 
 class DepartmentsDb:
     __departments: dict[str, Department]
 
     def __init__(self):
         self.__departments = dict()
-    def AddDepartment(self, deparment: Department):
-        if self.__departments.get(deparment.desc) is None:
-            self.__departments[deparment.desc] = deparment
+
+    def AddDepartment(self, department: Department):
+        if self.__departments.get(department.desc) is None:
+            self.__departments[department.desc] = department
+
     def AddToDepartment(self, departmentDesc: str, worker: Worker):
         if self.__departments.get(departmentDesc) is not None:
             self.__departments[departmentDesc].workers.append(worker)

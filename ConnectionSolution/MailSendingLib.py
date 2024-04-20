@@ -10,11 +10,16 @@ from email.mime.multipart import MIMEMultipart
 def InplaceLinkInMail(emailContent: str, link: str) -> str:
     return emailContent.replace("[link_token]", link)
 
+
 def InplaceSrcEmailInMail(emailContent: str, mail: str) -> str:
     return emailContent.replace("[mail token]", mail)
 
+
 # Class used to implement main mail sending logic
 class MailSender:
+    __serverName: str
+    __serverPort: int
+
     def __init__(self, server="smtp.gmail.com", port=465):
         self.__serverName = server
         self.__serverPort = port
@@ -42,3 +47,21 @@ class MailSender:
         emailContent = InplaceLinkInMail(emailContent, link)
 
         self.SendMail(srcMail, passwd, dstMail, emailTitle, emailContent)
+
+    @staticmethod
+    def GenerateDummyLink():
+        return "https://www.g00gle.com/"
+
+
+class UserMailSender:
+    __srcMail: str
+    __srcPasswd: str
+    __sender: MailSender
+
+    def __init__(self, server, port, mail, passwd):
+        self.__srcMail = mail
+        self.__srcPasswd = passwd
+        self.__sender = MailSender(server, port)
+
+    def SendMail(self, emailTitle: str, emailContent: str, dstMail: str, link: str):
+        self.__sender.SendPreparedEmail(emailTitle, emailContent, self.__srcMail, dstMail, self.__srcPasswd, link)

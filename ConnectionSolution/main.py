@@ -11,11 +11,14 @@ def LogicTest():
     FlowTests()
 
 
-# Iterates through mails contained in test fails and performs mail send
-# Functions opens ./mailList file and read from the first line smtp parameters then iterates through
-# all mails contained in the file to perform mail sending test
+#  TEST FILE FORMAT:
+# smtp:port
+# mail:passwd
+# mail:passwd
+# ...
 
-def OpenSender(line) -> mLib.MailSender:
+# Function is used to parse mail smtp params from testFile
+def OpenSender(line) -> mLib.MailSender | None:
     line = line.split(':')
     if not line or len(line) != 2:
         return None
@@ -23,8 +26,11 @@ def OpenSender(line) -> mLib.MailSender:
     return mLib.MailSender(line[0], int(line[1]))
 
 
+# Iterates through mails contained in test fails and performs mail send
+# Functions opens ./mailList file and read from the first line smtp parameters then iterates through
+# all mails contained in the file to perform mail sending test
 def SendingTest():
-    lineCnt = 0;
+    lineCnt = 0
     with open("mailList", 'r') as file:
         for line in file:
             lineCnt += 1
@@ -45,6 +51,7 @@ def SendingTest():
             sender.SendMail(line[0], line[1], "Jlisowskyy@gmail.com", "test", "test")
 
 
+# Function performs tests of departments database
 def FlowTests():
     lst = prepareBasicWorkerSet.getTestSet()
 
