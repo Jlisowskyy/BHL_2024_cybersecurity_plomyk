@@ -42,13 +42,13 @@
 		{"id":"65343f193af2bdbf","type":"text","text":"SMS","x":1123,"y":1779,"width":250,"height":60},
 		{"id":"a3a3311027c06b12","x":1122,"y":1489,"width":250,"height":60,"type":"text","text":"Potencjalnie różne tryby "},
 		{"id":"25d70f9000943832","type":"text","text":"User Interface","x":740,"y":1268,"width":250,"height":60},
-		{"id":"4bba8c578a5f58e3","type":"text","text":"Web Scrapping","x":740,"y":1349,"width":250,"height":60},
-		{"id":"ef1e2b5a5bff32e5","type":"text","text":"Pipeline generacji wiadomości","x":740,"y":1429,"width":250,"height":60},
 		{"id":"83d0fab4ddee9e60","type":"text","text":"Moduł wysyłania wiadomości ","x":740,"y":1714,"width":250,"height":75},
 		{"id":"39b37fefcaa33337","x":1820,"y":1376,"width":250,"height":60,"color":"2","type":"text","text":"Łukasz"},
 		{"id":"107d26463023bde5","x":1820,"y":1287,"width":250,"height":60,"color":"1","type":"text","text":"Kuba"},
 		{"id":"6de9566aa4e8e4d2","x":1820,"y":1466,"width":250,"height":60,"color":"6","type":"text","text":"Piotr"},
-		{"id":"b5e599ff81c45bf5","x":1820,"y":1547,"width":250,"height":60,"color":"4","type":"text","text":"Michał"}
+		{"id":"b5e599ff81c45bf5","x":1820,"y":1547,"width":250,"height":60,"color":"4","type":"text","text":"Michał"},
+		{"id":"ef1e2b5a5bff32e5","type":"text","text":"Pipeline generacji wiadomości","x":740,"y":1526,"width":250,"height":60},
+		{"id":"4bba8c578a5f58e3","type":"text","text":"Web Scrapping","x":740,"y":1406,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
@@ -71,6 +71,8 @@
 		{"id":"b42e27a4969edca7","fromNode":"cea7285b601d6c52","fromSide":"right","toNode":"da846931d291813c","toSide":"left"},
 		{"id":"a3d825793763d5f3","fromNode":"57533b5e447e403d","fromSide":"right","toNode":"842c59bb19388900","toSide":"left"},
 		{"id":"9256fa9e29cf3306","fromNode":"cea7285b601d6c52","fromSide":"bottom","toNode":"a3a3311027c06b12","toSide":"top"},
-		{"id":"5c96392f35fe77e1","fromNode":"b5e599ff81c45bf5","fromSide":"left","toNode":"e9ade54632b875d8","toSide":"right","color":"4"}
+		{"id":"5c96392f35fe77e1","fromNode":"b5e599ff81c45bf5","fromSide":"left","toNode":"25d70f9000943832","toSide":"top","color":"4"},
+		{"id":"df9325ceacc5e7b9","fromNode":"6de9566aa4e8e4d2","fromSide":"left","toNode":"ef1e2b5a5bff32e5","toSide":"bottom","color":"6"},
+		{"id":"8b8ba4cea5a4f7c5","fromNode":"39b37fefcaa33337","fromSide":"left","toNode":"4bba8c578a5f58e3","toSide":"top","color":"3"}
 	]
 }
