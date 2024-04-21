@@ -1,7 +1,7 @@
 import DataCollection as dc
 
-# from openai import OpenAI
-# from dotenv import load_dotenv
+from openai import OpenAI
+from dotenv import load_dotenv
 
 
 # PROMPT_MAIL_GENERATION = """Na podstawie poniższego posta i informacji o osobie, stwórz e-mail, który będzie jak najbardziej zainteresować odbiorcę. E-mail powinien być profesjonalny, przyciągający uwagę, oraz zawierać spersonalizowane odniesienia do treści posta i doświadczenia osoby. E-mail musi również zawierać specjalny link (LINK_TOKEN), który odbiorca powinien kliknąć, a jego konstrukcja powinna maksymalizować prawdopodobieństwo kliknięcia w ten link przez odbiorcę. Dodatkowo, model powinien wymyślić, z jakiej organizacji lub z jakiej potrzeby osoba wysyłająca e-mail pisze, oraz stworzyć wszystkie dane osoby wysyłającej.
