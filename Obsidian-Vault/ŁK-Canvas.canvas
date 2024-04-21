@@ -65,7 +65,7 @@
 		{"id":"7f1f020b86478793","x":-2460,"y":1195,"width":250,"height":60,"type":"text","text":"Prawo - czy to w ogole jest legalne"},
 		{"id":"136f06f50eb49b47","x":-2000,"y":1195,"width":250,"height":134,"type":"text","text":"Czy webscrapping nie wymaga jakos w chuj duzo pracy (maintanance) zeby to dzialalo "},
 		{"id":"949dda976ab864d9","x":-2000,"y":1381,"width":250,"height":60,"type":"text","text":"Skąd w ogóle dostaniemy linki"},
-		{"id":"46f99e0c7767708d","x":-2103,"y":1488,"width":250,"height":60,"type":"text","text":"Czy to de facto nie jest super narzędzie do phishingu -\ntotalnie nie bo wlasnie symuluje realne ataki, czyli przygotowuje ludzi ana ataki jakie normalnie by spotkali. To nie jest tak ze one znikaja nagle, my przygotowujemy ludzi zeby byli w stanie sobie z nim poradzili"}
+		{"id":"46f99e0c7767708d","x":-2103,"y":1466,"width":353,"height":211,"type":"text","text":"Czy to de facto nie jest super narzędzie do phishingu -\ntotalnie nie bo wlasnie symuluje realne ataki, czyli przygotowuje ludzi ana ataki jakie normalnie by spotkali. To nie jest tak ze one znikaja nagle, my przygotowujemy ludzi zeby byli w stanie sobie z nim poradzili"}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
