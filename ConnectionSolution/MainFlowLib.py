@@ -1,0 +1,216 @@
+# Author: Jakub Lisowski, Jlisowskyy
+
+import json
+import time
+
+import MailSendingLib as mLib
+
+# Class is used to store whole groups of workers
+
+class WorkerData:
+    def GatherInfo(self) -> str:
+        return "lack of info"
+
+    def GetLink(self) -> str:
+        return "lack of link"
+
+
+class LinkedinData(WorkerData):
+    link: str
+
+    def __init__(self, link: str):
+        self.link = link
+
+    # TODO:
+    def GatherInfo(self):
+        return "linkedin"
+
+    def GetLink(self):
+        return self.link
+
+
+class FacebookData(WorkerData):
+    link: str
+
+    def __init__(self, link: str):
+        self.link = link
+
+    def GatherInfo(self) -> str:
+        return "fb"
+
+    def GetLink(self):
+        return self.link
+
+
+class LinkTestCase:
+    code: str
+    start: float
+    exp: int
+
+    def IsExpired(self) -> bool:
+        expSecs = float(self.exp * 3600 * 24)
+        return time.time() > expSecs + self.start
+
+    # TODO:
+    def IsClicked(self) -> bool:
+        return False
+
+    # TODO:
+    def IsReported(self) -> bool:
+        return False
+
+
+class Worker:
+    name: str
+    surname: str
+    mail: str
+    dataset: list[WorkerData]
+    lastTest: float
+    tests: list[LinkTestCase]
+
+    def __init__(self, name: str, surname: str, mail: str, dataset: list[WorkerData], points=0, lastTest=time.time()):
+        self.name = name
+        self.surname = surname
+        self.mail = mail
+        self.dataset = dataset
+        self.points = points
+        self.lastTest = lastTest
+        self.tests = list()
+
+    # TODO: Scale time accordingly to actual user points
+    def ShouldBeTested(self, interval: float) -> bool:
+        actTime = time.time()
+        return (actTime - self.lastTest) > interval
+
+    def ToDict(self):
+        links_strings = []
+        for workerData in self.dataset:
+            links_strings.append(workerData.GetLink())
+        return {
+            "name": self.name,
+            "surname": self.surname,
+            "mail": self.mail,
+            "dataset": links_strings,
+            "points": self.points,
+            "lastTest": self.lastTest,
+            "tests": self.tests
+        }
+
+
+class Department:
+    # TODO:
+    # Notifier = mLib.CourseNotifier()
+
+    desc: str
+    interval: int
+    reportPoints: int
+    missPoints: int
+    clickPoints: int
+    courseThreshold: int
+    workers: list[Worker]
+
+    def __init__(self, desc: str, interval: int = 7, reportPoints: int = 5, missPoints: int = -5,
+                 clickPoints: int = -10, courceThreshold: int = -20):
+        self.desc = desc
+        self.interval = interval
+        self.reportPoints = reportPoints
+        self.missPoints = missPoints
+        self.clickPoints = clickPoints
+        self.courseThreshold = courceThreshold
+        self.workers = list()
+
+    # TODO:
+    def PerformPhishingTest(self, worker: Worker):
+        pass
+
+    # true -> test finished, false -> test ongoing
+    def ProcessWorkerTestCase(self, worker: Worker, test: LinkTestCase) -> bool:
+        if test.IsClicked():
+            worker.points += self.clickPoints
+            return True
+
+        if test.IsExpired():
+            worker.points += self.missPoints
+            return True
+
+        if test.IsReported():
+            worker.points += self.reportPoints
+            return True
+
+        return False
+
+    @staticmethod
+    def SendNotification(worker: Worker):
+        pass
+
+    def ProcessWorkerPointsStatus(self, worker: Worker):
+
+        # Worker should attend to cybersecurity courses
+        if worker.points < self.courseThreshold:
+            self.SendNotification(worker)
+            worker.points = 0
+            return
+
+
+    def CheckTests(self):
+        for worker in self.workers:
+            ongoingTests = list()
+
+            for test in worker.tests:
+                if self.ProcessWorkerTestCase(worker, test):
+                    self.ProcessWorkerPointsStatus(worker)
+                else:
+                    ongoingTests.append(test)
+
+            worker.tests = ongoingTests
+
+    def SendTests(self, intervalInSecs: float):
+        for worker in self.workers:
+            if worker.ShouldBeTested(intervalInSecs):
+                self.PerformPhishingTest(worker)
+
+
+class DepartmentsDb:
+    __departments: dict[str, Department]
+
+    def __init__(self):
+        self.__departments = dict()
+
+    def AddDepartment(self, department: Department):
+        if self.__departments.get(department.desc) is None:
+            self.__departments[department.desc] = department
+
+    def AddToDepartment(self, departmentDesc: str, worker: Worker):
+        if self.__departments.get(departmentDesc) is not None:
+            self.__departments[departmentDesc].workers.append(worker)
+
+    def SetDepartmentInterval(self, departmentDesc: str, interval: int):
+        dep = self.__departments.get(departmentDesc)
+        if dep is not None:
+            dep.interval = interval
+
+    def SetDepartmentReportPoints(self, departmentDesc: str, reportPoints: int):
+        dep = self.__departments.get(departmentDesc)
+        if dep is not None:
+            dep.reportPoints = reportPoints
+
+    def SetDepartmentMissPoints(self, departmentDesc: str, missPoints: int):
+        dep = self.__departments.get(departmentDesc)
+        if dep is not None:
+            dep.missPoints = missPoints
+
+    def SetDepartmentClickPoints(self, departmentDesc: str, clickPoints: int):
+        dep = self.__departments.get(departmentDesc)
+        if dep is not None:
+            dep.clickPoints = clickPoints
+
+    def SetDepartmentCourseThreshold(self, departmentDesc: str, courseThreshold: int):
+        dep = self.__departments.get(departmentDesc)
+        if dep is not None:
+            dep.courseThreshold = courseThreshold
+
+    def ProcessTick(self):
+        for key, dep in self.__departments.items():
+            interval = dep.interval
+            intervalInSecs = float(interval * 3600 * 24)
+            dep.SendTests(intervalInSecs)
