@@ -60,7 +60,8 @@ class MailSender:
             if creds and creds.expired and creds.refresh_token:
                 creds.refresh(Request())
             else:
-                flow = InstalledAppFlow.from_client_secrets_file('client_secret_290268868296-3iqk2egh3ocsrpoqfn7fb7emmnfhaoau.apps.googleusercontent.com.json', SCOPES)
+                flow = InstalledAppFlow.from_client_secrets_file(
+                    'configs/client_secret_290268868296-3iqk2egh3ocsrpoqfn7fb7emmnfhaoau.apps.googleusercontent.com.json', SCOPES)
                 creds = flow.run_local_server(port=0)
             with open('token.pickle', 'wb') as token:
                 pickle.dump(creds, token)

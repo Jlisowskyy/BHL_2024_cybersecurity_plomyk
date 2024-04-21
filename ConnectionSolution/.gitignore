@@ -6,3 +6,4 @@ mailList
 *.myenv/
 *.vs/
 venv/
+token.pickle
