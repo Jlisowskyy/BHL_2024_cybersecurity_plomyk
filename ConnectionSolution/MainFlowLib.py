@@ -9,8 +9,8 @@ from ws.ws.spiders.Worker import *
 import scrape_linkedin as sl
 
 class Department:
-    Notifier = mLib.Notifier("smtp.gmail.com", 465, "bhlmock1@gmail.com", "jwhybzganebqsgsl")
-    ScamSender = mLib.UserMailSender("smtp.gmail.com", 465, "bhlmock1@gmail.com", "jwhybzganebqsgsl")
+    Notifier = mLib.Notifier()
+    ScamSender = mLib.UserMailSender()
 
     desc: str
     interval: int
