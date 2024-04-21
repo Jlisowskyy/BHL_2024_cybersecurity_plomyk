@@ -183,7 +183,7 @@ class DepartmentsDb:
 
             for dep in self.__departments.values():
                 for worker in dep.workers:
-                    rv.append(json.dumps(worker.ToDict()))
+                    rv.append(worker.ToDict())
 
             with open(filepath, 'w') as file:
-                file.write(json.dumps(rv))
+                file.write(json.dumps(rv, indent=4))
