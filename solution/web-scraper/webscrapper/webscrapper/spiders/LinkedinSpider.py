@@ -11,6 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from urllib.parse import urlparse
 import re
 import unicodedata
+import time
 
 from colorama import Fore
 
@@ -25,9 +26,9 @@ class LinkedinScrapperSettings:
     login_button_selector = """#organic-div > form > div.login__form_action_container > button"""
 
     show_all_posts_sox = ["""//*[@id="profile-content"]/div/div[2]/div/div/main/section[4]/footer/a/span""", 1]
-    name_sox = ["""/html/body/div[6]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[2]/div[1]/div[1]/span//a/h1/text()""", 1]
-    description_sox = ["""//*[@id="profile-content"]/div/div[2]/div/div/main/section[1]/div[2]/div[2]/div[1]/div[2]/text()""", 1]
-    organization_sox = ["""//*[@id="profile-content"]/div/div[2]/div/div/main/section[1]/div[2]/div[2]/ul/li/button/span/div/text()""", 1]
+    name_sox = ["""/html/body/div[5]/div[4]/div/div/div[2]/div/div/main/section[1]/div[2]/div[2]/div[1]/div[1]/span/a/h1""", 1]
+    description_sox = ["""//*[@id="profile-content"]/div/div[2]/div/div/main/section[1]/div[2]/div[2]/div[1]/div[2]""", 1]
+    organization_sox = ["""//*[@id="profile-content"]/div/div[2]/div/div/main/section[1]/div[2]/div[2]/ul/li/button/span/div""", 1]
 
     posts_button_sox = ["""//*[@id="content-collection-pill-0"]""", 1]
 
@@ -39,10 +40,6 @@ class LinkedinScraper(scrapy.Spider):
     name = 'LinkedinScraper'
 
     def __init__(self, linkedin_profile_urls,    
-                show_all_posts_selector_or_xpath : [str, bool],
-                posts_button_selector_or_xpath : [str, bool],
-                reactions_button_selector_or_xpath : [str, bool],
-                comments_button_selector_or_xpath : [str, bool],
                 post_oldness_max_tolerance : int,
                 max_pages : int,
                 *args, **kwargs):
@@ -65,7 +62,7 @@ class LinkedinScraper(scrapy.Spider):
 
         # Setup the Chrome WebDriver with options
         chrome_options = Options()
-        chrome_options.add_argument("--headless")  # Run headless to avoid opening a new browser window
+        #chrome_options.add_argument("--headless")  # Run headless to avoid opening a new browser window
         chrome_options.add_argument(
             "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36") 
         self.driver = webdriver.Chrome(options=chrome_options)
@@ -98,6 +95,7 @@ class LinkedinScraper(scrapy.Spider):
         #
         #   Scrape all LinkedIn profiles
         #
+        time.sleep(15)
         for url in self.profile_urls:
             # Prepare the scraped data
             profile_data = {
@@ -116,54 +114,38 @@ class LinkedinScraper(scrapy.Spider):
             self.log("Creating a Selector from the HTML content", logging.DEBUG)
             sel_response = scrapy.http.HtmlResponse(url=self.driver.current_url, body=selenium_response_text, encoding='utf-8')
 
+            # Scrape the name and surname
+            #xpath to extract the first h1 text 
+            first_a_with_ember = sel_response.xpath('//a[contains(@id, "ember")][1]')
+            name = first_a_with_ember.xpath('.//h1/text()').get()
+            name = name.strip() if name else LinkedinScrapperSettings.not_found_str
+            self.log(f"{Fore.GREEN}name: {name}{Fore.RESET}", logging.DEBUG)
+            if name:
+                profile_data["name_surname"] = name
+
+            # Scrape the organization
+            ul_elements = sel_response.xpath('//ul[contains(@class, "pv-text-details__right-panel")]')
+            if ul_elements:
+                first_ul = ul_elements[0]
+                first_non_empty_element_text = first_ul.xpath('.//*[normalize-space(text())][1]/text()').get()
+                company = first_non_empty_element_text.strip() if first_non_empty_element_text else LinkedinScrapperSettings.not_found_str
+                profile_data["organization"] = company
             
-            # Get the name, surname, organization and description
-            self.log(f"Getting the name and surname", logging.DEBUG)
-            name_surname = self.evaluate_selector_or_xpath(sel_response, LinkedinScrapperSettings.name_sox).get()
-            self.log(f"Getting the organization", logging.DEBUG)
-            organization = self.evaluate_selector_or_xpath(sel_response, LinkedinScrapperSettings.organization_sox).get()
-            self.log(f"Getting the description", logging.DEBUG)
-            description = self.evaluate_selector_or_xpath(sel_response, LinkedinScrapperSettings.description_sox).get()
+            self.log(f"{Fore.GREEN}company: {first_non_empty_element_text.strip()}{Fore.RESET}", logging.DEBUG)
 
-            profile_data["name_surname"] = name_surname.strip() if name_surname else LinkedinScrapperSettings.not_found_str
-            profile_data["organization"] = organization.strip() if organization else LinkedinScrapperSettings.not_found_str
-            profile_data["description"] = description.strip() if description else LinkedinScrapperSettings.not_found_str
+            # Scrape the description
+            # Assume sel_response is your HtmlResponse object
+            description = sel_response.xpath('//main[contains(@class, "scaffold-layout__main")]//div[contains(@class, "text-body-medium break-words")]/text()').get()
+            description = description.strip() if description else LinkedinScrapperSettings.not_found_str
+            if description:
+                profile_data["description"] = description
+            
+            self.log(f"{Fore.GREEN}description: {description.strip()}{Fore.RESET}", logging.DEBUG)
 
-            self.log(f"{Fore.RED}Got profile data: {profile_data}{Fore.RESET}", logging.DEBUG)
+            time.sleep(30)
 
-            self.log(f"{Fore.GREEN}Scraping the posts{Fore.RESET}", logging.DEBUG)
 
-            #
-            # Select the button that shows all comments, click it and wait for the new page to load
-            #
-            self.log("Scrolling select all posts button into view", logging.INFO)
-            select_all_posts_button = self.evaluate_selector_or_xpath(sel_response, self.show_all_posts_selector_or_xpath)
-            self.driver.execute_script("arguments[0].scrollIntoView(true);", select_all_posts_button)
-            self.log(f"{Fore.GREEN}Selecting show all comments button{Fore.RESET}", logging.DEBUG)
-
-            WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(select_all_posts_button))
-            try:
-                self.log("Clicking the button", logging.INFO)
-                select_all_posts_button.click()
-            except WebDriverException:
-                self.log("Normal click failed, clicking the button with JavaScript", logging.INFO)
-                self.driver.execute_script("arguments[0].click();", select_all_posts_button)
-
-            # Wait for the new page to load
-            self.log(f"Waiting for the new page to load", logging.INFO)
-            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, '//body'))) 
-            selenium_response_text = self.driver.page_source
-
-            self.driver.get(response.url) 
-            # Wait for the page to fully load
-            self.log("Waiting for the page to fully load", logging.INFO)
-            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, '//body'))) 
-
-            # Get the Selenium WebDriver response
-            self.log("Getting the Selenium WebDriver response", logging.INFO)
-            selenium_response_text = self.driver.page_source
             yield profile_data
-
 
     def closed(self, reason):
         # Close the Selenium WebDriver
