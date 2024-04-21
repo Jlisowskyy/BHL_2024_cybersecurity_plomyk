@@ -5,7 +5,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 from ..ConnectionSolution.MainFlowLib import Worker
-
+from ..WebScraperSolution.ws.ws.spiders.LinkedinSpider import LinkedinScrapperSettings as lss
 
 PROMPT_MAIL_GENERATION_POST = """Na podstawie poniższego posta i informacji o osobie, stwórz e-mail, który ma jak najbardziej zainteresować odbiorcę. E-mail powinien być profesjonalny, przyciągający uwagę, oraz zawierać spersonalizowane odniesienia do treści posta i doświadczenia osoby. E-mail musi również zawierać specjalny link (LINK_TOKEN), który odbiorca powinien kliknąć, a jego konstrukcja powinna maksymalizować prawdopodobieństwo kliknięcia w ten link przez odbiorcę. Dodatkowo, model powinien wymyślić, z jakiej organizacji lub z jakiej potrzeby osoba wysyłająca e-mail pisze, oraz stworzyć wszystkie dane osoby wysyłającej.
  Proszę wygeneruj samego maila, bez żadnych dodatkowych informacji
@@ -86,9 +86,13 @@ def GetMailParams(inputWorker : Worker) -> [str, str]:
   inputData = f"Imię i Naziwsko osoby do której piszesz maila: `{inputWorker.name}, {inputWorker.surname}`"
   prompt = PROMPT_MAIL_GENERATION_GENERIC
   if 'linkedin' in inputWorker.context:
+    if 'organization' in inputWorker.context['linkedin'] and inputWorker.context['linkedin']['organization'] != lss.not_found_str:
+      inputData = inputData + f", Organizacja tej osoby: `{inputWorker.context['linkedin']['organization']}`"
+    if 'description' in inputWorker.context['linkedin'] and inputWorker.context['linkedin']['description'] != lss.not_found_str:
+      inputData = inputData + f", Rola tej osoby: `{inputWorker.context['linkedin']['description']}`"
     if 'posts' in inputWorker.context['linkedin']:
       if len(inputWorker.context['linkedin']['posts']) > 0:
-        inputData = inputData + f",Post tej osoby: `{inputWorker.context['linkedin']['posts'][0]}`"
+        inputData = inputData + f", Post tej osoby: `{inputWorker.context['linkedin']['posts'][0]}`"
         prompt = PROMPT_MAIL_GENERATION_POST
 
   client = OpenAI()
