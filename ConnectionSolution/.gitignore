@@ -1,7 +1,8 @@
-.venv/
-.idea/
+*.venv/
+*venv/
+*.idea/
 mailList
-__pycache__/
-.myenv/
-.vs/
+*__pycache__/
+*.myenv/
+*.vs/
 venv/
