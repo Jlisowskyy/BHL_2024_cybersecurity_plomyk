@@ -27,16 +27,17 @@ namespace HackatonUI
         {
             var currentPath = Environment.CurrentDirectory;
             string parentDirectory = Path.GetDirectoryName(currentPath);
-            string resPath = Path.Combine(parentDirectory, "\\ConnectionSolution");
+            string resPath = Path.Combine(parentDirectory, "ConnectionSolution");
             Environment.CurrentDirectory = resPath;
             Console.WriteLine(resPath);
 
-            var info = new ProcessStartInfo();
-            info.FileName = "python.exe";
-            info.UseShellExecute = true;
-            info.RedirectStandardOutput = true;
-            info.RedirectStandardInput = true;
-            _interpreter = Process.Start(info);
+            _interpreter = new Process();
+            _interpreter.StartInfo.FileName = "C:\\Users\\Jlisowskyy\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
+            _interpreter.StartInfo.UseShellExecute = false;
+            _interpreter.StartInfo.RedirectStandardOutput = true;
+            _interpreter.StartInfo.RedirectStandardInput = true;
+            _interpreter.StartInfo.RedirectStandardError = true;
+            _interpreter.Start();
 
             BootupProcedure(_interpreter.StandardInput, _interpreter.StandardOutput);
         }
@@ -45,7 +46,7 @@ namespace HackatonUI
         {
             interpreterWrite.WriteLine("import Application as App");
             interpreterWrite.WriteLine("app = App.Application(\"configs/departmentSetup.json\", \"configs/basicWorkerSet.json\")");
-            interpreterWrite.WriteLine("app.GetDepartments");
+            interpreterWrite.WriteLine("app.GetDepartments()");
 
             var line = interpreterRead.ReadLine();
             if (line == null)
