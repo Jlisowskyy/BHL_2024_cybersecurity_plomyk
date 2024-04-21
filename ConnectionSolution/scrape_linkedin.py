@@ -1,18 +1,10 @@
 import logging as log
 
 from scrapy.crawler import CrawlerProcess
-from scrapy import signals
-
 from scrapy.utils.project import get_project_settings
-
 from colorama import Fore
-
 from ws.ws.spiders.LinkedinSpider import LinkedinScraper
-from ws.ws.settings import ITEM_PIPELINES
-
-from ..ConnectionSolution.MainFlowLib import Worker
-
-from time import sleep
+from ws.ws.spiders.Worker import *
 
 def crawl_linkedin(emails : list, urls : list, workers : list[Worker]):
     post_oldness_max_tolerance = 30

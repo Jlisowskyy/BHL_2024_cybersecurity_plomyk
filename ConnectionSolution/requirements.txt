@@ -12,5 +12,10 @@ python-dotenv
 google-auth-httplib2
 google-auth-oauthlib
 google-api-python-client
+scrapy
+scrapy-fake-useragent
+scrapy-rotating-proxies
+selenium
+colorama
 # not sure if the below are actual packagage names (taken from MailGenerator.py)
 openai

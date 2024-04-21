@@ -1,23 +1,16 @@
 import logging
 import scrapy
 from selenium import webdriver
-from selenium.common.exceptions import WebDriverException, TimeoutException
-from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
-from urllib.parse import urlparse
-import re
 import unicodedata
-import time
-import json
-import sys
 
-from .....ConnectionSolution.Worker import *
-
+from ws.ws.spiders.Worker import *
 from colorama import Fore
 
 class LinkedinScrapperSettings:
@@ -221,10 +214,6 @@ class LinkedinScraper(scrapy.Spider):
 
             # Saving to file is obsolete with the worker.context
 
-            #filename = f"{hash(profile_data['email']) % ((sys.maxsize + 1) * 2) }.json"
-            #with open(filename, "w") as file:
-            #    json.dump(profile_data, file, ensure_ascii=False)
-            
             worker.context['linkedin'] = profile_data
 
             # this yield is obsolete

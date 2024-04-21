@@ -5,8 +5,8 @@ import MailSendingLib as mLib
 import MailGenerator as mg
 import Helpers as hp
 
-from Worker import *
-from ..WebScraperSolution import scrape_linkedin as sl
+from ws.ws.spiders.Worker import *
+import scrape_linkedin as sl
 
 class Department:
     Notifier = mLib.Notifier("smtp.gmail.com", 465, "bhlmock1@gmail.com", "jwhybzganebqsgsl")
@@ -149,7 +149,7 @@ class DepartmentsDb:
     def GetWorkers(self):
         rv = list()
         
-        for dep in self.__departments.items:
+        for _, dep in self.__departments.items():
             for worker in dep.workers:
                 if len(worker.dataset) != 0:
                     rv.append([worker.mail, worker.dataset[0], worker])
