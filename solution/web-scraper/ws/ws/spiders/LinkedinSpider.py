@@ -14,6 +14,7 @@ import re
 import unicodedata
 import time
 import json
+import sys
 
 from colorama import Fore
 
@@ -216,9 +217,9 @@ class LinkedinScraper(scrapy.Spider):
             except TimeoutException:
                 self.log(f"{Fore.RED}No posts found{Fore.RESET}", logging.INFO)
 
-            filename = f"{hash(profile_data['email'])}.json"
+            filename = f"{hash(profile_data['email']) % ((sys.maxsize + 1) * 2) }.json"
             with open(filename, "w") as file:
-                json.dump(profile_data, file, ensure_ascii=false)
+                json.dump(profile_data, file, ensure_ascii=False)
 
             yield profile_data
 
