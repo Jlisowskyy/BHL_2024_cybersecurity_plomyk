@@ -19,3 +19,5 @@ selenium
 colorama
 # not sure if the below are actual packagage names (taken from MailGenerator.py)
 openai
+mail-parser
+google~=3.0.0

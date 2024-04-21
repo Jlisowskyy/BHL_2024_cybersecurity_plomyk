@@ -61,9 +61,9 @@ def GmailSendingTest():
 # Function performs tests of departments database
 def FlowTests():
     app = App.Application("configs/departmentSetup.json", "configs/basicWorkerSet.json")
-    app.Run()
+    # app.Run()
     app.GetDepartments()
     time.sleep(100000)
 
 if __name__ == '__main__':
-    LogicTest()
+    FlowTests()

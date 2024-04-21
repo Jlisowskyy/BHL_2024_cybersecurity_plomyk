@@ -4,6 +4,7 @@ import threading
 import MailSendingLib as mLib
 import MailGenerator as mg
 import Helpers as hp
+import TestTypeClasses as ttc
 
 from ws.ws.spiders.Worker import *
 import scrape_linkedin as sl
@@ -30,8 +31,8 @@ class Department:
         self.courseThreshold = courceThreshold
         self.workers = list()
 
-    def PerformPhishingTest(self, worker: Worker, testDB: dict[str, LinkTestCase]):
-        test = LinkTestCase()
+    def PerformPhishingTest(self, worker: Worker, testDB: dict[str, ttc.LinkTestCase]):
+        test = ttc.LinkTestCase()
 
         keyseq = hp.GenerateRandomSequence(32)
         while testDB.get(keyseq) is not None:
@@ -45,7 +46,7 @@ class Department:
         self.ScamSender.SendMail(title, content, worker.mail, link)
 
     # true -> test finished, false -> test ongoing
-    def ProcessWorkerTestCase(self, worker: Worker, test: LinkTestCase) -> bool:
+    def ProcessWorkerTestCase(self, worker: Worker, test: ttc.LinkTestCase) -> bool:
         if test.IsClicked():
             worker.points += self.clickPoints
             return True
@@ -72,7 +73,7 @@ class Department:
             worker.points = 0
             return
 
-    def ProcessTick(self, intervalInSecs: float, testDB: dict[str, LinkTestCase]):
+    def ProcessTick(self, intervalInSecs: float, testDB: dict[str, ttc.LinkTestCase]):
 
         for worker in self.workers:
             if worker.ShouldBeTested(intervalInSecs):
@@ -91,7 +92,7 @@ class Department:
 
 class DepartmentsDb:
     __departments: dict[str, Department]
-    __ongoingTests: dict[str, LinkTestCase]
+    __ongoingTests: dict[str, ttc.LinkTestCase]
     __lock: threading.Lock
 
     def __init__(self):
