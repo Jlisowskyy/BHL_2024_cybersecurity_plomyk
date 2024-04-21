@@ -15,9 +15,10 @@ namespace HackatonUI
             InitializeComponent();
             Closed += CloseInterpreter;
 
+            _companyInfo = new CompanyInfo();
+
             BootupInterpreter();
             
-            _companyInfo = new CompanyInfo();
             InitPanels();
             InitUpDowns();
         }
@@ -29,33 +30,30 @@ namespace HackatonUI
             string parentDirectory = Path.GetDirectoryName(currentPath);
             string resPath = Path.Combine(parentDirectory, "ConnectionSolution");
             Environment.CurrentDirectory = resPath;
-            Console.WriteLine(resPath);
+            Console.WriteLine(Environment.CurrentDirectory);
 
             _interpreter = new Process();
             _interpreter.StartInfo.FileName = "C:\\Users\\Jlisowskyy\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
             _interpreter.StartInfo.UseShellExecute = false;
+            _interpreter.StartInfo.Arguments = "Application.py";
             _interpreter.StartInfo.RedirectStandardOutput = true;
             _interpreter.StartInfo.RedirectStandardInput = true;
             _interpreter.StartInfo.RedirectStandardError = true;
+            _interpreter.StartInfo.CreateNoWindow = true;
             _interpreter.Start();
 
-            BootupProcedure(_interpreter.StandardInput, _interpreter.StandardOutput);
+            BootupProcedure(_interpreter.StandardOutput);
         }
 
-        private void BootupProcedure(StreamWriter interpreterWrite, StreamReader interpreterRead)
+        private void BootupProcedure(StreamReader interpreterRead)
         {
-            interpreterWrite.WriteLine("import Application as App");
-            interpreterWrite.WriteLine("app = App.Application(\"configs/departmentSetup.json\", \"configs/basicWorkerSet.json\")");
-            interpreterWrite.WriteLine("app.GetDepartments()");
-
             var line = interpreterRead.ReadLine();
             if (line == null)
                 return;
 
             var departments = line.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
             _companyInfo.departmentNames = [..departments];
-
-            interpreterWrite.WriteLine("app.Run()");
+            interpreterRead.Close();
         }
         
         private void CloseInterpreter(object? sender, EventArgs e)
@@ -67,7 +65,7 @@ namespace HackatonUI
         private void UpdateDepartments()
         {
             var streamWrite = _interpreter.StandardInput;
-            streamWrite.WriteLine($"app.UpdateDepartments({PrepareConfig()})");
+            streamWrite.WriteLine($"upt {PrepareConfig()}");
         }
 
         // Initialization of the list of departments

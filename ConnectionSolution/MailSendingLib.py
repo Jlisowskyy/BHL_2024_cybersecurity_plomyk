@@ -16,11 +16,11 @@ import os.path
 
 # Function replaces link token inside mail content string
 def InplaceLinkInMail(emailContent: str, link: str) -> str:
-    return emailContent.replace("[link_token]", link)
+    return emailContent.replace("[LINK_TOKEN]", link)
 
 
 def InplaceSrcEmailInMail(emailContent: str, mail: str) -> str:
-    return emailContent.replace("[mail token]", mail)
+    return emailContent.replace("[EMAIL_TOKEN]", mail)
 
 
 # Class used to implement main mail sending logic

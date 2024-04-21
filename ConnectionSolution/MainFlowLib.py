@@ -44,6 +44,7 @@ class Department:
         [title, content] = mg.GetMailParams(worker.context, worker.name, worker.surname)
 
         self.ScamSender.SendMail(title, content, worker.mail, link)
+        worker.lastTest = time.time()
 
     # true -> test finished, false -> test ongoing
     def ProcessWorkerTestCase(self, worker: Worker, test: ttc.LinkTestCase) -> bool:

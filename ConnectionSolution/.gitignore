@@ -7,3 +7,4 @@ mailList
 *.vs/
 venv/
 token.pickle
+.env
