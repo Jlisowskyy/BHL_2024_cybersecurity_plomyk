@@ -1,0 +1,6 @@
+*.venv/
+*bin/
+*idea/
+*.vs/
+*.idea/
+*obj/
