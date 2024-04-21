@@ -7,19 +7,21 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from urllib.parse import urlparse
 import re
 import unicodedata
 import time
+import json
 
 from colorama import Fore
 
 class LinkedinScrapperSettings:
     login_page_url = "https://www.linkedin.com/login"
 
-    login_email = 'bhlmock1@gmail.com'
-    login_password = "0eZyExduckiQ0Zhsgb8Y"
+    login_email = 'bolof42773@rartg.com'
+    login_password = "Orwell911"
 
     login_email_id = "username"
     login_password_id = "password"
@@ -34,18 +36,23 @@ class LinkedinScrapperSettings:
 
     not_found_str = "not found"
 
+    activity_append_url = "recent-activity/all/"
+
 
 
 class LinkedinScraper(scrapy.Spider):
     name = 'LinkedinScraper'
 
-    def __init__(self, linkedin_profile_urls,    
+    def __init__(self, 
+                linkedin_profile_urls,
+                user_emails,    
                 post_oldness_max_tolerance : int,
                 max_pages : int,
                 *args, **kwargs):
         super(LinkedinScraper, self).__init__(*args, **kwargs)
         self.start_urls = [LinkedinScrapperSettings.login_page_url]
-        self.profile_urls = [linkedin_profile_urls] if linkedin_profile_urls else []
+        self.profile_urls = linkedin_profile_urls
+        self.user_emails = user_emails
 
         # The general idea is, that the user can specify either a selector or an xpath 
         # for each of the items needed to be scraped. This is done by passing a list,
@@ -55,6 +62,7 @@ class LinkedinScraper(scrapy.Spider):
 
         # Maximum number of days since the post was published
         self.post_oldness_max_tolerance = post_oldness_max_tolerance
+        self.user_email = user_emails
 
         # Counter for the number of pages scraped
         self.current_page = 0
@@ -69,6 +77,7 @@ class LinkedinScraper(scrapy.Spider):
 
 
     def parse(self, response):
+
         #
         # Logging to LinkedIn
         #
@@ -95,10 +104,14 @@ class LinkedinScraper(scrapy.Spider):
         #
         #   Scrape all LinkedIn profiles
         #
-        time.sleep(15)
-        for url in self.profile_urls:
+        # temporary solution to login
+        time.sleep(2)
+
+        for (url, email) in zip(self.profile_urls, self.user_emails):
             # Prepare the scraped data
             profile_data = {
+                "email": email,
+                "linkedin_url": url,
                 "name_surname": LinkedinScrapperSettings.not_found_str,
                 "organization": LinkedinScrapperSettings.not_found_str,
                 "description": LinkedinScrapperSettings.not_found_str,
@@ -106,7 +119,7 @@ class LinkedinScraper(scrapy.Spider):
             }
 
             self.log(f"{Fore.GREEN}Loading the web page for {url}{Fore.RESET}", logging.DEBUG)
-            self.driver.get(self.profile_urls[0]) 
+            self.driver.get(url) 
             self.log("Waiting for the page to fully load", logging.DEBUG)
             WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, '//body'))) 
             self.log("Getting the Selenium WebDriver response", logging.DEBUG)
@@ -114,36 +127,98 @@ class LinkedinScraper(scrapy.Spider):
             self.log("Creating a Selector from the HTML content", logging.DEBUG)
             sel_response = scrapy.http.HtmlResponse(url=self.driver.current_url, body=selenium_response_text, encoding='utf-8')
 
+            # Temporary solution to load all user data
+            time.sleep(2)
             # Scrape the name and surname
-            #xpath to extract the first h1 text 
-            first_a_with_ember = sel_response.xpath('//a[contains(@id, "ember")][1]')
-            name = first_a_with_ember.xpath('.//h1/text()').get()
-            name = name.strip() if name else LinkedinScrapperSettings.not_found_str
-            self.log(f"{Fore.GREEN}name: {name}{Fore.RESET}", logging.DEBUG)
-            if name:
-                profile_data["name_surname"] = name
+            # Wait for it to load
+            try:
+                WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, '//a[contains(@id, "ember")][1]')))
+                #xpath to extract the first h1 text 
+                first_a_with_ember = sel_response.xpath('//a[contains(@id, "ember")][1]')
+                name = first_a_with_ember.xpath('.//h1/text()').get()
+                name = name.strip() if name else LinkedinScrapperSettings.not_found_str
+                self.log(f"{Fore.GREEN}name: {name}{Fore.RESET}", logging.DEBUG)
+                if name:
+                    profile_data["name_surname"] = name
+            except TimeoutException:
+                profile_data["name_surname"] = LinkedinScrapperSettings.not_found_str
+
 
             # Scrape the organization
-            ul_elements = sel_response.xpath('//ul[contains(@class, "pv-text-details__right-panel")]')
-            if ul_elements:
-                first_ul = ul_elements[0]
-                first_non_empty_element_text = first_ul.xpath('.//*[normalize-space(text())][1]/text()').get()
+            # Wait for it to load
+            try:
+                WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, '//ul[contains(@class, "pv-text-details__right-panel")]')))
+                ul_elements = sel_response.xpath('//ul[contains(@class, "pv-text-details__right-panel")]')
+                first_non_empty_element_text = None
+                if ul_elements:
+                    first_ul = ul_elements[0]
+                    first_non_empty_element_text = first_ul.xpath('.//*[normalize-space(text())][1]/text()').get()
                 company = first_non_empty_element_text.strip() if first_non_empty_element_text else LinkedinScrapperSettings.not_found_str
                 profile_data["organization"] = company
+            except TimeoutException:
+                profile_data["organization"] = LinkedinScrapperSettings.not_found_str
             
-            self.log(f"{Fore.GREEN}company: {first_non_empty_element_text.strip()}{Fore.RESET}", logging.DEBUG)
+            self.log(f"{Fore.GREEN}company: {company}{Fore.RESET}", logging.DEBUG)
 
             # Scrape the description
-            # Assume sel_response is your HtmlResponse object
-            description = sel_response.xpath('//main[contains(@class, "scaffold-layout__main")]//div[contains(@class, "text-body-medium break-words")]/text()').get()
-            description = description.strip() if description else LinkedinScrapperSettings.not_found_str
-            if description:
-                profile_data["description"] = description
+            # Wait for it to load
+            try:
+                WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, '//main[contains(@class, "scaffold-layout__main")]//div[contains(@class, "text-body-medium break-words")]')))
+                description = sel_response.xpath('//main[contains(@class, "scaffold-layout__main")]//div[contains(@class, "text-body-medium break-words")]/text()').get()
+                description = description.strip() if description else LinkedinScrapperSettings.not_found_str
+                if description:
+                    profile_data["description"] = description
+            except TimeoutException:
+                profile_data["description"] = LinkedinScrapperSettings.not_found_str
             
-            self.log(f"{Fore.GREEN}description: {description.strip()}{Fore.RESET}", logging.DEBUG)
+            self.log(f"{Fore.GREEN}description: {description}{Fore.RESET}", logging.DEBUG)
 
-            time.sleep(30)
+            #
+            #   Scrape the posts   
+            #
 
+            # Change to the Activity tab
+            posts_url = url + LinkedinScrapperSettings.activity_append_url
+            self.log(f"{Fore.GREEN}Loading the web page for {posts_url}{Fore.RESET}", logging.DEBUG)
+            self.driver.get(posts_url) 
+            self.log("Waiting for the page to fully load", logging.DEBUG)
+            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, '//body'))) 
+            self.log("Getting the Selenium WebDriver response", logging.DEBUG)
+            selenium_response_text = self.driver.page_source
+            self.log("Creating a Selector from the HTML content", logging.DEBUG)
+            sel_response = scrapy.http.HtmlResponse(url=self.driver.current_url, body=selenium_response_text, encoding='utf-8')
+
+            # Wait for the posts to load
+            try:
+                ul_element = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located( (By.CSS_SELECTOR, "ul.display-flex.flex-wrap.list-style-none.justify-center"))
+                )
+                li_elements = ul_element.find_elements(By.CSS_SELECTOR, "li.profile-creator-shared-feed-update__container")
+                # Get the posts
+                processed_posts = 0
+
+                for li in li_elements:
+                    processed_posts += 1
+                    if processed_posts > 5:
+                        break
+                    ActionChains(self.driver).move_to_element(li).perform()
+                    try:
+                        wait = WebDriverWait(self.driver, 10)
+                        break_words_span = wait.until(
+                            EC.visibility_of(li.find_element(By.CSS_SELECTOR, "span.break-words"))
+                        )
+                        if break_words_span is not None:
+                            self.log(f"{Fore.GREEN}Found post text: {break_words_span.text.strip()}{Fore.RESET}", logging.INFO)
+                            profile_data["posts"] += [break_words_span.text.strip()]
+                    except TimeoutException:
+                        self.log(f"{Fore.RED}Coudn't find text in post{Fore.RESET}", logging.INFO)
+
+            except TimeoutException:
+                self.log(f"{Fore.RED}No posts found{Fore.RESET}", logging.INFO)
+
+            filename = f"{hash(profile_data['email'])}.json"
+            with open(filename, "w") as file:
+                json.dump(profile_data, file, ensure_ascii=false)
 
             yield profile_data
 

@@ -6,9 +6,8 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-from colorama import Fore
-import logging as log
 
-class WebscrapperPipeline:
+
+class TestPipeline:
     def process_item(self, item, spider):
         return item
