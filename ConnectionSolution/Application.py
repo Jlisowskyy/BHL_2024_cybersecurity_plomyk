@@ -2,6 +2,7 @@ import MainFlowLib as mfl
 import DbMaintaining as dbm
 import DummyPageHost as dph
 import ConfigDeserialization as cd
+import sys
 
 class Application:
 
@@ -14,9 +15,17 @@ class Application:
         self.LoadWorkers(loadWorkersPath)
 
     def Run(self):
-        self.db.BeginScraping()
+        # self.db.BeginScraping()
         dph.RunFlask()
         self.__maintainer.StartMaintaining(self.__interval)
+
+        while True:
+            line = input()
+
+            if line == 'exit':
+                sys.exit()
+            if len(line) > 3 and line[0:3] == "upt":
+                self.UpdateDepartments(line[3:])
 
     def StopApplication(self):
         self.__maintainer.StopMaintaining()
@@ -43,3 +52,8 @@ class Application:
     def UpdateDepartments(self, departments: str):
         deps = cd.init_departments(departments)
         self.db.UpdateDepartaments(deps)
+
+if __name__ == '__main__':
+    app = Application("configs/departmentSetup.json", "configs/basicWorkerSet.json")
+    app.GetDepartments()
+    app.Run()
