@@ -4,9 +4,9 @@
 		{"id":"2375da25a20ba382","type":"group","x":-740,"y":1188,"width":1329,"height":1172,"color":"3","label":"Flow"},
 		{"id":"ca9b6de8979cb403","type":"group","x":-740,"y":-37,"width":1261,"height":1017,"color":"4","label":"Initial Access"},
 		{"id":"eadb4aad7d475905","type":"group","x":-740,"y":2440,"width":940,"height":543,"color":"6","label":"UI"},
+		{"id":"299e47489754f9a9","x":-2480,"y":1180,"width":760,"height":519,"color":"1","type":"group","label":"Adwokat Diabła"},
 		{"id":"2a5b598b7d5e5e60","type":"group","x":-1660,"y":1195,"width":600,"height":519,"color":"2","label":"Presentation Points"},
 		{"id":"ecd3c12b5f08507e","type":"group","x":-720,"y":1560,"width":420,"height":458,"color":"1","label":"Strategia Phishing (typ testu)"},
-		{"id":"299e47489754f9a9","x":-2280,"y":1195,"width":460,"height":385,"color":"1","type":"group","label":"Adwokat Diabła"},
 		{"id":"e3b1c5ec99be319e","type":"group","x":1160,"y":-37,"width":302,"height":513,"color":"2","label":"Pomysły"},
 		{"id":"d4bc43cf0629be5e","type":"group","x":-260,"y":1560,"width":499,"height":184,"color":"1","label":"Medium Testu"},
 		{"id":"8b8cdac17a7f0ad0","type":"text","text":"Codziennie mini szkolenia z phishingu (interaktywna gierka - typu 2/3 maile zmieszane z niedobrymi mailami, i masz tylko powiedziec tak lub nie, i odpala ci sie na np 10 s)","x":1180,"y":-17,"width":250,"height":240},
@@ -60,9 +60,9 @@
 		{"id":"ff81f46d38fbb8f5","type":"text","text":"System pocztowy do zliczania oflagowan","x":740,"y":1880,"width":250,"height":60},
 		{"id":"da846931d291813c","type":"text","text":"Trzeba to wymyślić i zaprojektować","x":1429,"y":1466,"width":250,"height":60},
 		{"id":"842c59bb19388900","type":"text","text":"Wybór informacji które będą dodatkowo podane obok pracowników\n\n(ostatni post z pracy)","x":1429,"y":1235,"width":250,"height":171},
-		{"id":"7f1f020b86478793","x":-2260,"y":1215,"width":250,"height":60,"type":"text","text":"Prawo - czy to w ogole jest legalne"},
-		{"id":"515e9ee9936f193d","x":-2260,"y":1299,"width":250,"height":60,"type":"text","text":"Czy linkdin nie jest trudny do scrapeowania"},
-		{"id":"fb91c956349ce568","x":-2260,"y":1401,"width":250,"height":60,"type":"text","text":""}
+		{"id":"fb91c956349ce568","x":-2460,"y":1381,"width":250,"height":169,"type":"text","text":"Czy to na pewno jest takie automatyczne, czy nie beda zle outputy generowane / hardcoded prompt"},
+		{"id":"515e9ee9936f193d","x":-2460,"y":1279,"width":250,"height":60,"type":"text","text":"Czy linkdin nie jest trudny do scrapeowania"},
+		{"id":"7f1f020b86478793","x":-2460,"y":1195,"width":250,"height":60,"type":"text","text":"Prawo - czy to w ogole jest legalne"}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
