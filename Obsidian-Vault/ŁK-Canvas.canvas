@@ -62,7 +62,8 @@
 		{"id":"842c59bb19388900","type":"text","text":"Wybór informacji które będą dodatkowo podane obok pracowników\n\n(ostatni post z pracy)","x":1429,"y":1235,"width":250,"height":171},
 		{"id":"fb91c956349ce568","x":-2460,"y":1381,"width":250,"height":169,"type":"text","text":"Czy to na pewno jest takie automatyczne, czy nie beda zle outputy generowane / hardcoded prompt"},
 		{"id":"515e9ee9936f193d","x":-2460,"y":1279,"width":250,"height":60,"type":"text","text":"Czy linkdin nie jest trudny do scrapeowania"},
-		{"id":"7f1f020b86478793","x":-2460,"y":1195,"width":250,"height":60,"type":"text","text":"Prawo - czy to w ogole jest legalne"}
+		{"id":"7f1f020b86478793","x":-2460,"y":1195,"width":250,"height":60,"type":"text","text":"Prawo - czy to w ogole jest legalne"},
+		{"id":"136f06f50eb49b47","x":-2000,"y":1195,"width":250,"height":134,"type":"text","text":"Czy webscrapping nie wymaga jakos w chuj duzo pracy, i jak mamy pozyskiwać platformy"}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
