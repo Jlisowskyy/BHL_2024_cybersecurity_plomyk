@@ -60,7 +60,8 @@ class MailSender:
             if creds and creds.expired and creds.refresh_token:
                 creds.refresh(Request())
             else:
-                flow = InstalledAppFlow.from_client_secrets_file('client_secret_290268868296-3iqk2egh3ocsrpoqfn7fb7emmnfhaoau.apps.googleusercontent.com.json', SCOPES)
+                flow = InstalledAppFlow.from_client_secrets_file(
+                    'configs/client_secret_290268868296-3iqk2egh3ocsrpoqfn7fb7emmnfhaoau.apps.googleusercontent.com.json', SCOPES)
                 creds = flow.run_local_server(port=0)
             with open('token.pickle', 'wb') as token:
                 pickle.dump(creds, token)
@@ -76,11 +77,11 @@ class MailSender:
         print("[ LOG ] Message sent")
 
     # Function performs full mail sending logic with to desired u
-    def SendPreparedEmail(self, emailTitle: str, emailContent: str, srcMail: str, dstMail: str, passwd: str, link: str):
+    def SendPreparedEmail(self, emailTitle: str, emailContent: str, srcMail: str, dstMail: str, link: str):
         emailContent = InplaceSrcEmailInMail(emailContent, srcMail)
         emailContent = InplaceLinkInMail(emailContent, link)
 
-        self.SendMail(srcMail, passwd, dstMail, emailTitle, emailContent)
+        self.SendMailWithGmailApi(dstMail, emailTitle, emailContent)
 
     @staticmethod
     def GenerateDummyLink(seq: str):
@@ -93,21 +94,20 @@ class UserMailSender:
     __srcPasswd: str
     __sender: MailSender
 
-    def __init__(self, server: str, port: int, mail: str, passwd: str):
+    def __init__(self, mail: str):
         self.__srcMail = mail
-        self.__srcPasswd = passwd
-        self.__sender = MailSender(server, port)
+        self.__sender = MailSender()
 
     def SendMail(self, emailTitle: str, emailContent: str, dstMail: str, link: str = ""):
-        self.__sender.SendPreparedEmail(emailTitle, emailContent, self.__srcMail, dstMail, self.__srcPasswd, link)
+        self.__sender.SendPreparedEmail(emailTitle, emailContent, self.__srcMail, dstMail, link)
 
 
 # Class used to send corporate courseMails
 class Notifier:
     __sender: UserMailSender
 
-    def __init__(self, server, port, mail, passwd):
-        self.__sender = UserMailSender(server, port, mail, passwd)
+    def __init__(self, mail):
+        self.__sender = UserMailSender(mail)
 
     def NotifyAboutCourse(self, targetMail):
         self.__sender.SendMail("Chlopie ogarnij sie", "Powinienes udac sie na kurs z cybersecurity", targetMail)

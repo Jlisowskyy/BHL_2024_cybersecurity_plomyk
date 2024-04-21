@@ -98,12 +98,12 @@ class LinkedinScraper(scrapy.Spider):
         self.log(f"Waiting for the page to fully load", logging.INFO)
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, '//body'))) 
         self.log(f"{Fore.GREEN}Successfully logged in{Fore.RESET}", logging.INFO)
-
+        
         #
         #   Scrape all LinkedIn profiles
         #
         # temporary solution to login
-        time.sleep(2)
+        time.sleep(12)
 
         for (url, email, worker) in zip(self.profile_urls, self.user_emails, self.workers):
             # Prepare the scraped data
