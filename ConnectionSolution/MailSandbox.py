@@ -4,7 +4,7 @@ from logging import log, INFO, ERROR, DEBUG
 
 class MailSandbox:
     def __init__(self):
-        self.worker = Worker("Jan", "Kowalski")
+        self.worker = Worker("Jan", "Kowalski", "FakeMail", [])
         self.worker.context = {
             'linkedin': {
                 'name_surname': 'Jan Kowalski',
@@ -17,11 +17,11 @@ class MailSandbox:
 
     def GenerateMail(self):
 
-        log(log.INFO, "Mail generated")
-        [title, content] = MailGenerator.GetMailParams(self.worker)
+        log(INFO, "Mail generated")
+        [title, content] = MailGenerator.GetMailParams(self.worker.context, self.worker.name, self.worker.surname)
 
-        log(log.INFO, f"Title: {title}")
-        log(log.INFO, f"Content: {content}")
+        log(INFO, f"Title: {title}")
+        log(INFO, f"Content: {content}")
 
         return title, content
 
