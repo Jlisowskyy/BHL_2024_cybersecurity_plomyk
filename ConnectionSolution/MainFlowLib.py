@@ -11,6 +11,9 @@ class WorkerData:
     def GatherInfo(self) -> str:
         return "lack of info"
 
+    def GetLink(self) -> str:
+        return "lack of link"
+
 
 class LinkedinData(WorkerData):
     link: str
@@ -22,6 +25,9 @@ class LinkedinData(WorkerData):
     def GatherInfo(self):
         return "linkedin"
 
+    def GetLink(self):
+        return self.link
+
 
 class FacebookData(WorkerData):
     link: str
@@ -31,6 +37,9 @@ class FacebookData(WorkerData):
 
     def GatherInfo(self) -> str:
         return "fb"
+
+    def GetLink(self):
+        return self.link
 
 
 class LinkTestCase:
@@ -72,6 +81,20 @@ class Worker:
     def ShouldBeTested(self, interval: float) -> bool:
         actTime = time.time()
         return (actTime - self.lastTest) > interval
+
+    def ToDict(self):
+        links_strings = []
+        for workerData in self.dataset:
+            links_strings.append(workerData.GetLink())
+        return {
+            "name": self.name,
+            "surname": self.surname,
+            "mail": self.mail,
+            "dataset": links_strings,
+            "points": self.points,
+            "lastTest": self.lastTest,
+            "tests": self.tests
+        }
 
 
 class Department:
