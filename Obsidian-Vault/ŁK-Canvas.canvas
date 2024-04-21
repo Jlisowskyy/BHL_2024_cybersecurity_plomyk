@@ -13,7 +13,6 @@
 		{"id":"5baa88cc7c5574a7","type":"text","text":"#### Phishing\nNabieramy ludzi (np przez mail, sms) aby weszli na jakąś stronkę/pobrali jakiś plik/wpisali jakiś kod etc. Tak abyśmy uzyskali dzięki nim większy dostęp","x":-184,"y":280,"width":364,"height":196},
 		{"id":"716bce7d0be1879d","type":"text","text":"#### Replication Through Removable Media\nWrzuć malware na np pendrive.\npodlaczysz pendrive -> od razu wykonuje sie zly kod.\n\n**virus na twoim pc może potem automatycznie zarażać inne pendrive zeby rozszerzac virus**","x":-182,"y":541,"width":362,"height":279},
 		{"id":"a1b413d11b9b62c4","type":"text","text":"#### Trusted Relationship\nCzęsto w naszym systemie istnieją osoby trzecie które mają jakiś elevated privilage. Zhackuj admina -> dorwiesz klientów","x":-719,"y":681,"width":326,"height":249},
-		{"id":"bbad11a225b8f434","type":"text","text":"Web Scraping z danego zbioru social mediów","x":319,"y":1570,"width":250,"height":60},
 		{"id":"9bf7802603a41ba9","type":"text","text":"Mail","x":-240,"y":1580,"width":250,"height":60},
 		{"id":"cf7d4049ca787316","type":"text","text":"Przygotowanie malicious wiadomości","x":-116,"y":2140,"width":250,"height":60},
 		{"id":"23d657e231aff7ac","type":"text","text":"Wysłanie jej","x":-116,"y":2280,"width":250,"height":60},
@@ -58,7 +57,6 @@
 		{"id":"a5ddd5db0d00d876","type":"text","text":"#### Exploit Public-Facing Application\nMamy publiczny dostęp do aplikacji -> np socket.\nW sockecie jest jakiś błąd / słabość -> exploitujemy ja","x":-419,"y":-20,"width":330,"height":240},
 		{"id":"9ae1e4b9e68564a5","type":"text","text":"#### Drive-by Compromise\n- Stronka na którą wszedłeś ma  malicious javascript który coś ci haksuje","x":-59,"y":-17,"width":340,"height":177},
 		{"id":"8b8cdac17a7f0ad0","type":"text","text":"Codziennie mini szkolenia z phishingu (interaktywna gierka - typu 2/3 maile zmieszane z niedobrymi mailami, i masz tylko powiedziec tak lub nie, i odpala ci sie na np 10 s)","x":1180,"y":-17,"width":250,"height":240},
-		{"id":"8293483f7e606ec6","type":"text","text":"Dane kontekstowe na temat pracownika i jego ostatnich aktywności","x":319,"y":1684,"width":250,"height":95},
 		{"id":"511f3adbcac3208d","type":"text","text":"Main Apka","x":-98,"y":1148,"width":192,"height":60},
 		{"id":"3cd18f55e9967f6b","type":"text","text":"Lista Pracowników do przetestowania","x":-420,"y":1148,"width":250,"height":60,"color":"1"},
 		{"id":"271681435a56cfaa","type":"text","text":"Przeprowadzenie Testu","x":-127,"y":1249,"width":250,"height":60},
@@ -66,7 +64,9 @@
 		{"id":"7d623b92da4990ad","type":"text","text":"Sms","x":-11,"y":1663,"width":211,"height":56},
 		{"id":"5c117d1999d27db2","type":"text","text":"Atak wewnętrzny z pozycji nieuprzywilowanej (konto kogoś z firmy)","x":-695,"y":1868,"width":275,"height":112},
 		{"id":"cb58cbf6604f83de","type":"text","text":"Atak wewnętrzny z pozycji uprzywilejowanej (ktoś wysoko postawiony w firmie)","x":-697,"y":1694,"width":277,"height":125},
-		{"id":"910abad03bf530a0","type":"text","text":"Standard Phishing (z pozycji zewnętrznej)","x":-697,"y":1592,"width":277,"height":71}
+		{"id":"910abad03bf530a0","type":"text","text":"Standard Phishing (z pozycji zewnętrznej)","x":-697,"y":1592,"width":277,"height":71},
+		{"id":"8293483f7e606ec6","type":"text","text":"Dane kontekstowe na temat pracownika i jego ostatnich aktywności","x":320,"y":1684,"width":250,"height":95},
+		{"id":"bbad11a225b8f434","type":"text","text":"Web Scraping z danego zbioru social mediów","x":320,"y":1570,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
