@@ -1,0 +1,9 @@
+import Application
+app = Application.Application()
+app.Run()
+
+...
+app.db.SetDepartmentReportPoints("HR", 5)
+...
+
+app.Stop()

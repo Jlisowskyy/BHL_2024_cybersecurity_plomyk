@@ -4,6 +4,7 @@ import smtplib as smtp
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+
 # Function replaces link token inside mail content string
 def InplaceLinkInMail(emailContent: str, link: str) -> str:
     return emailContent.replace("[link_token]", link)
@@ -39,6 +40,9 @@ class MailSender:
 
         print("[ LOG ] Message sent")
 
+    def SendMailWithGmailApi(self, dstMail, title, msg):
+        pass
+
     # Function performs full mail sending logic with to desired u
     def SendPreparedEmail(self, emailTitle: str, emailContent: str, srcMail: str, dstMail: str, passwd: str, link: str):
         emailContent = InplaceSrcEmailInMail(emailContent, srcMail)
@@ -47,7 +51,7 @@ class MailSender:
         self.SendMail(srcMail, passwd, dstMail, emailTitle, emailContent)
 
     @staticmethod
-    def GenerateDummyLink(seq:str):
+    def GenerateDummyLink(seq: str):
         return f"127.0.0.1/{seq}"
 
 
@@ -75,4 +79,3 @@ class Notifier:
 
     def NotifyAboutCourse(self, targetMail):
         self.__sender.SendMail("Chlopie ogarnij sie", "Powinienes udac sie na kurs z cybersecurity", targetMail)
-
