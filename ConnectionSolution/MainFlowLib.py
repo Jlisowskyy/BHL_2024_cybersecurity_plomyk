@@ -116,7 +116,7 @@ class Department:
         testDB[keyseq] = test
 
         link = mLib.MailSender.GenerateDummyLink(keyseq)
-        [title, content] = mg.GetMailParams(worker.dataset)
+        [title, content] = mg.GetMailParams(worker)
 
         self.ScamSender.SendMail(title, content, worker.mail, link)
 
