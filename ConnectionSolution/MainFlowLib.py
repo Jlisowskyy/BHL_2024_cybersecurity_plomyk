@@ -4,11 +4,13 @@ import json
 import threading
 import time
 
+import ConfigDeserialization
 import MailSendingLib as mLib
 
 from DataCollection import *
 import MailGenerator as mg
 import Helpers as hp
+
 
 class LinkTestCase:
     start: float
@@ -171,35 +173,18 @@ class DepartmentsDb:
             if self.__departments.get(departmentDesc) is not None:
                 self.__departments[departmentDesc].workers.append(worker)
 
-    def SetDepartmentInterval(self, departmentDesc: str, interval: int):
+    def UpdateDepartaments(self, jsonDepartmentsInfo: str):
         with self.__lock:
-            dep = self.__departments.get(departmentDesc)
-            if dep is not None:
-                dep.interval = interval
+            deps = ConfigDeserialization.init_departments(jsonDepartmentsInfo)
 
-    def SetDepartmentReportPoints(self, departmentDesc: str, reportPoints: int):
-        with self.__lock:
-            dep = self.__departments.get(departmentDesc)
-            if dep is not None:
-                dep.reportPoints = reportPoints
+            for dep in deps:
+                if self.__departments.get(dep.desc) is not None:
+                    depToUpdate = self.__departments.get(dep.desc)
 
-    def SetDepartmentMissPoints(self, departmentDesc: str, missPoints: int):
-        with self.__lock:
-            dep = self.__departments.get(departmentDesc)
-            if dep is not None:
-                dep.missPoints = missPoints
-
-    def SetDepartmentClickPoints(self, departmentDesc: str, clickPoints: int):
-        with self.__lock:
-            dep = self.__departments.get(departmentDesc)
-            if dep is not None:
-                dep.clickPoints = clickPoints
-
-    def SetDepartmentCourseThreshold(self, departmentDesc: str, courseThreshold: int):
-        with self.__lock:
-            dep = self.__departments.get(departmentDesc)
-            if dep is not None:
-                dep.courseThreshold = courseThreshold
+                    depToUpdate.interval = dep.interval
+                    depToUpdate.missPoints = dep.missPoints
+                    depToUpdate.clickPoints = dep.clickPoints
+                    depToUpdate.courseThreshold = dep.courseThreshold
 
     def ProcessTick(self):
         with self.__lock:
@@ -208,5 +193,5 @@ class DepartmentsDb:
                 intervalInSecs = float(interval * 3600 * 24)
                 dep.ProcessTick(intervalInSecs, self.__ongoingTests)
 
-    def GetDepartments(self) -> list[Department]:
+    def GetDepartments(self):
         return self.__departments.keys()

@@ -37,4 +37,4 @@ class Application:
             self.db.AddToDepartment(dep, worker)
 
     def GetDepartments(self):
-        print(','.join(dep.desc for dep in self.db.GetDepartments()))
+        print(','.join(dep for dep in self.db.GetDepartments()))

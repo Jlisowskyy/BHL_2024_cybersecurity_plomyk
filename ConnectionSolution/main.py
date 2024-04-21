@@ -62,6 +62,7 @@ def GmailSendingTest():
 def FlowTests():
     app = App.Application("configs/departmentSetup.json", "configs/basicWorkerSet.json")
     app.Run()
+    app.GetDepartments()
     time.sleep(100000)
 
 if __name__ == '__main__':
