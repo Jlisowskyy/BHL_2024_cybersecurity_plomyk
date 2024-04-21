@@ -1,10 +1,6 @@
-import DataCollection as dc
-import MainFlowLib as mfl
-
 from openai import OpenAI
 from dotenv import load_dotenv
 
-from ..ConnectionSolution.MainFlowLib import Worker
 from ..WebScraperSolution.ws.ws.spiders.LinkedinSpider import LinkedinScrapperSettings as lss
 
 PROMPT_MAIL_GENERATION_POST = """Na podstawie poniższego posta i informacji o osobie, stwórz e-mail, który ma jak najbardziej zainteresować odbiorcę. E-mail powinien być profesjonalny, przyciągający uwagę, oraz zawierać spersonalizowane odniesienia do treści posta i doświadczenia osoby. E-mail musi również zawierać specjalny link (LINK_TOKEN), który odbiorca powinien kliknąć, a jego konstrukcja powinna maksymalizować prawdopodobieństwo kliknięcia w ten link przez odbiorcę. Dodatkowo, model powinien wymyślić, z jakiej organizacji lub z jakiej potrzeby osoba wysyłająca e-mail pisze, oraz stworzyć wszystkie dane osoby wysyłającej.
@@ -80,19 +76,19 @@ def ExtractEmailParts(emailString) -> [str, str]:
    return topic, content.strip()
 
 # Function returns [mail title, mail content] based on passed context data
-def GetMailParams(inputWorker : Worker) -> [str, str]:
+def GetMailParams(context: dict[dict[str,str,str,list[str]]], name: str, surname: str) -> [str, str]:
   load_dotenv()
 
-  inputData = f"Imię i Naziwsko osoby do której piszesz maila: `{inputWorker.name}, {inputWorker.surname}`"
+  inputData = f"Imię i Naziwsko osoby do której piszesz maila: `{name}, {surname}`"
   prompt = PROMPT_MAIL_GENERATION_GENERIC
-  if 'linkedin' in inputWorker.context:
-    if 'organization' in inputWorker.context['linkedin'] and inputWorker.context['linkedin']['organization'] != lss.not_found_str:
-      inputData = inputData + f", Organizacja tej osoby: `{inputWorker.context['linkedin']['organization']}`"
-    if 'description' in inputWorker.context['linkedin'] and inputWorker.context['linkedin']['description'] != lss.not_found_str:
-      inputData = inputData + f", Rola tej osoby: `{inputWorker.context['linkedin']['description']}`"
-    if 'posts' in inputWorker.context['linkedin']:
-      if len(inputWorker.context['linkedin']['posts']) > 0:
-        inputData = inputData + f", Post tej osoby: `{inputWorker.context['linkedin']['posts'][0]}`"
+  if 'linkedin' in context:
+    if 'organization' in context['linkedin'] and context['linkedin']['organization'] != lss.not_found_str:
+      inputData = inputData + f", Organizacja tej osoby: `{context['linkedin']['organization']}`"
+    if 'description' in context['linkedin'] and context['linkedin']['description'] != lss.not_found_str:
+      inputData = inputData + f", Rola tej osoby: `{context['linkedin']['description']}`"
+    if 'posts' in context['linkedin']:
+      if len(context['linkedin']['posts']) > 0:
+        inputData = inputData + f", Post tej osoby: `{context['linkedin']['posts'][0]}`"
         prompt = PROMPT_MAIL_GENERATION_POST
 
   client = OpenAI()

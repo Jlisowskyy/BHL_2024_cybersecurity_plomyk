@@ -16,7 +16,7 @@ import time
 import json
 import sys
 
-from .....ConnectionSolution.MainFlowLib import Worker
+from .....ConnectionSolution.Worker import *
 
 from colorama import Fore
 
