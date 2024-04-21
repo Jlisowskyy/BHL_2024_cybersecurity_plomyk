@@ -5,6 +5,8 @@ import MailSendingLib as mLib
 import MailGenerator as mg
 import Helpers as hp
 import TestTypeClasses as ttc
+import UpdatingReports
+import json
 
 from ws.ws.spiders.Worker import *
 import scrape_linkedin as sl
@@ -93,12 +95,12 @@ class Department:
 
 class DepartmentsDb:
     __departments: dict[str, Department]
-    __ongoingTests: dict[str, ttc.LinkTestCase]
+    ongoingTests: dict[str, ttc.LinkTestCase]
     __lock: threading.Lock
 
     def __init__(self):
         self.__departments = dict()
-        self.__ongoingTests = dict()
+        self.ongoingTests = dict()
         self.__lock = threading.Lock()
 
     def BeginScraping(self):
@@ -139,11 +141,17 @@ class DepartmentsDb:
                     depToUpdate.courseThreshold = dep.courseThreshold
 
     def ProcessTick(self):
+        username = 'cyberplomyk@outlook.com'
+        password = 'Lukaszjestcyborgiem'
+
         with self.__lock:
+            updater = UpdatingReports.UpdateDatabase(self, username, password)
+            updater.UpdateDatabaseReports()
+
             for key, dep in self.__departments.items():
                 interval = dep.interval
                 intervalInSecs = float(interval * 3600 * 24)
-                dep.ProcessTick(intervalInSecs, self.__ongoingTests)
+                dep.ProcessTick(intervalInSecs, self.ongoingTests)
 
     def GetDepartments(self):
         return self.__departments.keys()
@@ -157,3 +165,14 @@ class DepartmentsDb:
                     rv.append([worker.mail, worker.dataset[0], worker])
 
         return rv
+
+    def SaveUsers(self, filepath):
+        with self.__lock:
+            rv = list()
+
+            for dep in self.__departments.values():
+                for worker in dep.workers:
+                    rv.append(json.dumps(worker.ToDict()))
+
+            with open(filepath, 'w') as file:
+                file.write(json.dumps(rv))

@@ -23,6 +23,7 @@ class Application:
             line = input()
 
             if line == 'exit':
+                self.db.SaveUsers("out")
                 sys.exit()
             if len(line) > 3 and line[0:3] == "upt":
                 self.UpdateDepartments(line[3:])

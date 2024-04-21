@@ -12,7 +12,7 @@ class UpdateDatabase:
 
     def UpdateDatabaseReports(self):
         newEmails = self.email_scanner.get_new_messages()
-        for key, value in self.db.__ongoingTests.items():
+        for key, value in self.db.ongoingTests.items():
             link = "127.0.0.1/" + key
             for email in newEmails:
                 if link in email.text:
