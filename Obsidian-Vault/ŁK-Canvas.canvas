@@ -64,7 +64,7 @@
 		{"id":"515e9ee9936f193d","x":-2460,"y":1279,"width":250,"height":60,"type":"text","text":"Czy linkdin nie jest trudny do scrapeowania"},
 		{"id":"7f1f020b86478793","x":-2460,"y":1195,"width":250,"height":60,"type":"text","text":"Prawo - czy to w ogole jest legalne"},
 		{"id":"136f06f50eb49b47","x":-2000,"y":1195,"width":250,"height":134,"type":"text","text":"Czy webscrapping nie wymaga jakos w chuj duzo pracy (maintanance) zeby to dzialalo "},
-		{"id":"949dda976ab864d9","x":-2000,"y":1381,"width":250,"height":60,"type":"text","text":"Czy "}
+		{"id":"949dda976ab864d9","x":-2000,"y":1381,"width":250,"height":60,"type":"text","text":"Skąd w ogóle dostaniemy linki"}
 	],
 	"edges":[
 		{"id":"963b98c82aa0f069","fromNode":"271681435a56cfaa","fromSide":"right","toNode":"bbad11a225b8f434","toSide":"top"},
