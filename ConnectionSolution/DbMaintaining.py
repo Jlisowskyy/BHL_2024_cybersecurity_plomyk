@@ -24,3 +24,4 @@ class DbMaintainer:
     def StopMaintaining(self):
         self.shouldMaintain = False
         self.__thread.join()
+
