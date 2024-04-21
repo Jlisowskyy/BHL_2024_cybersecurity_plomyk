@@ -4,3 +4,4 @@ mailList
 __pycache__/
 .myenv/
 .vs/
+venv/
