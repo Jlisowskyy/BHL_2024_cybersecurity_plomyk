@@ -9,7 +9,7 @@ namespace HackatonUI
     public class CompanyInfo
     {
         // Temporary list of depatments, will be replaced with database
-        public readonly List<string> departmentNames = new List<string>()
+        public List<string> departmentNames = new List<string>()
         {
             "Human Resources",
             "Finance and Accounting",

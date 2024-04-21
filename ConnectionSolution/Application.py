@@ -39,3 +39,6 @@ class Application:
 
     def GetDepartments(self):
         print(','.join(dep for dep in self.db.GetDepartments()))
+
+    def UpdateDepartments(self, departments: str):
+        self.db.UpdateDepartaments(departments)
