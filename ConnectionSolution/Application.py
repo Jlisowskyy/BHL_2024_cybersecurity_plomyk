@@ -41,4 +41,5 @@ class Application:
         print(','.join(dep for dep in self.db.GetDepartments()))
 
     def UpdateDepartments(self, departments: str):
-        self.db.UpdateDepartaments(departments)
+        deps = cd.init_departments(departments)
+        self.db.UpdateDepartaments(deps)

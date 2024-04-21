@@ -1,6 +1,5 @@
 import json
 import MainFlowLib as mfl
-from MainFlowLib import Worker
 
 def init_departments(json_data: str) -> list[mfl.Department]:
     data_dict = json.loads(json_data)

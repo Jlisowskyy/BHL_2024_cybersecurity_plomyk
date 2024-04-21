@@ -1,88 +1,12 @@
 # Author: Jakub Lisowski, Jlisowskyy
 
-import json
 import threading
-import time
-
-import ConfigDeserialization
 import MailSendingLib as mLib
-
-from DataCollection import *
 import MailGenerator as mg
 import Helpers as hp
 
+from Worker import *
 from ..WebScraperSolution import scrape_linkedin as sl
-
-class LinkTestCase:
-    start: float
-    exp: int
-    isClicked: bool
-    isReported: bool
-
-    def __init__(self, exp: int = 3):
-        self.start = time.time()
-        self.exp = exp
-        self.isReported = False
-        self.isClicked = False
-
-    def IsExpired(self) -> bool:
-        expSecs = float(self.exp * 3600 * 24)
-        return time.time() > expSecs + self.start
-
-    def IsClicked(self) -> bool:
-        return self.isClicked
-
-    def IsReported(self) -> bool:
-        return self.isReported
-
-
-class Worker:
-    name: str
-    surname: str
-    mail: str
-    dataset: list[LinkedinData]
-    lastTest: float
-    tests: list[LinkTestCase]
-    context: dict[dict[str,str,str,list[str]]] = {}
-
-    # context is of structure: 
-    #
-    # context = {
-    #    'linkedin' = {
-    #        "name_surname": str,
-    #        "organization": str,
-    #        "description": str,
-    #        "posts": list[str],
-    #    }
-    # } 
-    def __init__(self, name: str, surname: str, mail: str, dataset: list[LinkedinData], points=0, lastTest=time.time()):
-        self.name = name
-        self.surname = surname
-        self.mail = mail
-        self.dataset = dataset
-        self.points = points
-        self.lastTest = lastTest
-        self.tests = list()
-
-    # TODO: Scale time accordingly to actual user points
-    def ShouldBeTested(self, interval: float) -> bool:
-        actTime = time.time()
-        return (actTime - self.lastTest) > interval
-
-    def ToDict(self):
-        links_strings = []
-        for workerData in self.dataset:
-            links_strings.append(workerData.link)
-        return {
-            "name": self.name,
-            "surname": self.surname,
-            "mail": self.mail,
-            "dataset": links_strings,
-            "points": self.points,
-            "lastTest": self.lastTest,
-            "tests": self.tests
-        }
-
 
 class Department:
     Notifier = mLib.Notifier("smtp.gmail.com", 465, "bhlmock1@gmail.com", "jwhybzganebqsgsl")
@@ -116,7 +40,7 @@ class Department:
         testDB[keyseq] = test
 
         link = mLib.MailSender.GenerateDummyLink(keyseq)
-        [title, content] = mg.GetMailParams(worker)
+        [title, content] = mg.GetMailParams(worker.context, worker.name, worker.surname)
 
         self.ScamSender.SendMail(title, content, worker.mail, link)
 
@@ -180,13 +104,15 @@ class DepartmentsDb:
 
         emails = []
         linkedin_urls = []
+        workerList = []
 
         for worker in workers:
             emails.append(worker[0])
             linkedin_urls.append(worker[1])
+            workerList.append(worker[2])
         
         # This takes a long time to finish
-        sl.crawl_linkedin(emails, linkedin_urls, Worker)
+        sl.crawl_linkedin(emails, linkedin_urls, workerList)
 
 
     def AddDepartment(self, department: Department):
@@ -199,10 +125,8 @@ class DepartmentsDb:
             if self.__departments.get(departmentDesc) is not None:
                 self.__departments[departmentDesc].workers.append(worker)
 
-    def UpdateDepartaments(self, jsonDepartmentsInfo: str):
+    def UpdateDepartaments(self, deps: list[Department]):
         with self.__lock:
-            deps = ConfigDeserialization.init_departments(jsonDepartmentsInfo)
-
             for dep in deps:
                 if self.__departments.get(dep.desc) is not None:
                     depToUpdate = self.__departments.get(dep.desc)
