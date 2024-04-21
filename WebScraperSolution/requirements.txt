@@ -2,3 +2,4 @@ scrapy
 scrapy-fake-useragent
 scrapy-rotating-proxies
 selenium
+colorama
