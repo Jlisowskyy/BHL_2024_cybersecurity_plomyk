@@ -14,6 +14,7 @@ class Application:
         self.LoadWorkers(loadWorkersPath)
 
     def Run(self):
+        self.db.BeginScraping()
         dph.RunFlask()
         self.__maintainer.StartMaintaining(self.__interval)
 

@@ -11,6 +11,7 @@ from DataCollection import *
 import MailGenerator as mg
 import Helpers as hp
 
+from ..WebScraperSolution import scrape_linkedin as sl
 
 class LinkTestCase:
     start: float
@@ -42,7 +43,18 @@ class Worker:
     dataset: list[LinkedinData]
     lastTest: float
     tests: list[LinkTestCase]
+    context: dict[dict[str,str,str,list[str]]] = {}
 
+    # context is of structure: 
+    #
+    # context = {
+    #    'linkedin' = {
+    #        "name_surname": str,
+    #        "organization": str,
+    #        "description": str,
+    #        "posts": list[str],
+    #    }
+    # } 
     def __init__(self, name: str, surname: str, mail: str, dataset: list[LinkedinData], points=0, lastTest=time.time()):
         self.name = name
         self.surname = surname
@@ -163,6 +175,20 @@ class DepartmentsDb:
         self.__ongoingTests = dict()
         self.__lock = threading.Lock()
 
+    def BeginScraping(self):
+        workers = self.GetWorkers()
+
+        emails = []
+        linkedin_urls = []
+
+        for worker in workers:
+            emails.append(worker[0])
+            linkedin_urls.append(worker[1])
+        
+        # This takes a long time to finish
+        sl.crawl_linkedin(emails, linkedin_urls, Worker)
+
+
     def AddDepartment(self, department: Department):
         with self.__lock:
             if self.__departments.get(department.desc) is None:
@@ -195,3 +221,13 @@ class DepartmentsDb:
 
     def GetDepartments(self):
         return self.__departments.keys()
+    
+    def GetWorkers(self):
+        rv = list()
+        
+        for dep in self.__departments.items:
+            for worker in dep.workers:
+                if len(worker.dataset) != 0:
+                    rv.append([worker.mail, worker.dataset[0], worker])
+
+        return rv

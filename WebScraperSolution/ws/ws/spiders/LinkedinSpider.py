@@ -16,6 +16,8 @@ import time
 import json
 import sys
 
+from .....ConnectionSolution.MainFlowLib import Worker
+
 from colorama import Fore
 
 class LinkedinScrapperSettings:
@@ -45,8 +47,9 @@ class LinkedinScraper(scrapy.Spider):
     name = 'LinkedinScraper'
 
     def __init__(self, 
-                linkedin_profile_urls,
-                user_emails,    
+                linkedin_profile_urls : list[str],
+                user_emails : list[str],
+                workers : list[Worker],
                 post_oldness_max_tolerance : int,
                 max_pages : int,
                 *args, **kwargs):
@@ -54,6 +57,7 @@ class LinkedinScraper(scrapy.Spider):
         self.start_urls = [LinkedinScrapperSettings.login_page_url]
         self.profile_urls = linkedin_profile_urls
         self.user_emails = user_emails
+        self.workers = workers
 
         # The general idea is, that the user can specify either a selector or an xpath 
         # for each of the items needed to be scraped. This is done by passing a list,
@@ -108,11 +112,9 @@ class LinkedinScraper(scrapy.Spider):
         # temporary solution to login
         time.sleep(2)
 
-        for (url, email) in zip(self.profile_urls, self.user_emails):
+        for (url, email, worker) in zip(self.profile_urls, self.user_emails, self.workers):
             # Prepare the scraped data
             profile_data = {
-                "email": email,
-                "linkedin_url": url,
                 "name_surname": LinkedinScrapperSettings.not_found_str,
                 "organization": LinkedinScrapperSettings.not_found_str,
                 "description": LinkedinScrapperSettings.not_found_str,
@@ -217,10 +219,15 @@ class LinkedinScraper(scrapy.Spider):
             except TimeoutException:
                 self.log(f"{Fore.RED}No posts found{Fore.RESET}", logging.INFO)
 
-            filename = f"{hash(profile_data['email']) % ((sys.maxsize + 1) * 2) }.json"
-            with open(filename, "w") as file:
-                json.dump(profile_data, file, ensure_ascii=False)
+            # Saving to file is obsolete with the worker.context
 
+            #filename = f"{hash(profile_data['email']) % ((sys.maxsize + 1) * 2) }.json"
+            #with open(filename, "w") as file:
+            #    json.dump(profile_data, file, ensure_ascii=False)
+            
+            worker.context['linkedin'] = profile_data
+
+            # this yield is obsolete
             yield profile_data
 
     def closed(self, reason):
