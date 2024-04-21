@@ -1,0 +1,17 @@
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\bin\Debug\net8.0-windows\HackatonUI.exe
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\bin\Debug\net8.0-windows\HackatonUI.deps.json
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\bin\Debug\net8.0-windows\HackatonUI.runtimeconfig.json
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\bin\Debug\net8.0-windows\HackatonUI.dll
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\bin\Debug\net8.0-windows\HackatonUI.pdb
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\obj\Debug\net8.0-windows\HackatonUI.Form1.resources
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\obj\Debug\net8.0-windows\HackatonUI.csproj.GenerateResource.cache
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\obj\Debug\net8.0-windows\HackatonUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\obj\Debug\net8.0-windows\HackatonUI.AssemblyInfoInputs.cache
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\obj\Debug\net8.0-windows\HackatonUI.AssemblyInfo.cs
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\obj\Debug\net8.0-windows\HackatonUI.csproj.CoreCompileInputs.cache
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\obj\Debug\net8.0-windows\HackatonUI.sourcelink.json
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\obj\Debug\net8.0-windows\HackatonUI.dll
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\obj\Debug\net8.0-windows\refint\HackatonUI.dll
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\obj\Debug\net8.0-windows\HackatonUI.pdb
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\obj\Debug\net8.0-windows\HackatonUI.genruntimeconfig.cache
+C:\Users\Jlisowskyy\Repos\BHL_2024_cybersecurity_plomyk\AdministratorUI\obj\Debug\net8.0-windows\ref\HackatonUI.dll
