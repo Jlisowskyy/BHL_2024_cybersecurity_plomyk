@@ -58,7 +58,7 @@ class Worker:
     def ToDict(self):
         links_strings = []
         for workerData in self.dataset:
-            links_strings.append(workerData.GetLink())
+            links_strings.append(workerData.link)
         return {
             "name": self.name,
             "surname": self.surname,
@@ -207,3 +207,6 @@ class DepartmentsDb:
                 interval = dep.interval
                 intervalInSecs = float(interval * 3600 * 24)
                 dep.ProcessTick(intervalInSecs, self.__ongoingTests)
+
+    def GetDepartments(self) -> list[Department]:
+        return self.__departments.keys()

@@ -1,4 +1,5 @@
 import DataCollection as dc
+import MainFlowLib as mfl
 
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -52,7 +53,7 @@ from dotenv import load_dotenv
 #   return topic, content.strip()
 
 # Function returns [mail title, mail content] based on passed context data
-def GetMailParams(inputData: str) -> [str, str]:
+def GetMailParams(inputData: list[mfl.LinkedinData]) -> [str, str]:
   # load_dotenv()
   #
   # client = OpenAI()

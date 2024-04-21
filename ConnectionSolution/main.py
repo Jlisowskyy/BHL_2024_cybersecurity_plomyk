@@ -1,12 +1,16 @@
 # Autor: Jakub Lisowski, Jlisowskyy
+import time
 
 import MailSendingLib as mLib
 import MainFlowLib as fLib
 import prepareBasicWorkerSet
+import ConfigDeserialization as cd
+import Application as App
 
 # Function is used to perform main functionality tests
 def LogicTest():
-    SendingTest()
+    # SendingTest()
+    # GmailSendingTest()
     FlowTests()
 
 
@@ -47,21 +51,18 @@ def SendingTest():
             if len(line) != 2:
                 continue
 
-            sender.SendMail(line[0], line[1], "verscup@gmail.com", "test", "test")
+            sender.SendMail(line[0], line[1], "Jlisowskyy@gmail.com", "test", "test")
+
+def GmailSendingTest():
+    sender = mLib.MailSender()
+    sender.SendMailWithGmailApi("Jlisowskyy@gmail.com", "test", "test")
 
 
 # Function performs tests of departments database
 def FlowTests():
-    lst = prepareBasicWorkerSet.getTestSet()
-
-    db = fLib.DepartmentsDb()
-
-    db.AddDepartment(fLib.Department("HR"))
-    for worker in lst:
-        db.AddToDepartment("HR", worker)
-
-    db.ProcessTick()
-
+    app = App.Application("configs/departmentSetup.json", "configs/basicWorkerSet.json")
+    app.Run()
+    time.sleep(100000)
 
 if __name__ == '__main__':
     LogicTest()
