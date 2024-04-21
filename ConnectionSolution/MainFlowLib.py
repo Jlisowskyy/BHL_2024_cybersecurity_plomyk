@@ -7,6 +7,7 @@ import Helpers as hp
 import TestTypeClasses as ttc
 import UpdatingReports
 import json
+import attempt2 as EmailScanner
 
 from ws.ws.spiders.Worker import *
 import scrape_linkedin as sl
@@ -94,14 +95,28 @@ class Department:
 
 
 class DepartmentsDb:
+    email_scanner: EmailScanner.MessageScraper
     __departments: dict[str, Department]
     ongoingTests: dict[str, ttc.LinkTestCase]
     __lock: threading.Lock
 
     def __init__(self):
+        username = 'cyberplomyk@outlook.com'
+        password = 'Lukaszjestcyborgiem'
+
         self.__departments = dict()
         self.ongoingTests = dict()
         self.__lock = threading.Lock()
+        self.email_scanner = EmailScanner.MessageScraper(username, password)
+
+
+    def UpdateDatabaseReports(self):
+        newEmails = self.email_scanner.get_new_messages()
+        for key, value in self.ongoingTests.items():
+            link = "127.0.0.1/" + key
+            for email in newEmails:
+                if link in email.text:
+                    value.isReported = True
 
     def BeginScraping(self):
         workers = self.GetWorkers()
@@ -141,12 +156,8 @@ class DepartmentsDb:
                     depToUpdate.courseThreshold = dep.courseThreshold
 
     def ProcessTick(self):
-        username = 'cyberplomyk@outlook.com'
-        password = 'Lukaszjestcyborgiem'
-
         with self.__lock:
-            updater = UpdatingReports.UpdateDatabase(self, username, password)
-            updater.UpdateDatabaseReports()
+            self.UpdateDatabaseReports()
 
             for key, dep in self.__departments.items():
                 interval = dep.interval
