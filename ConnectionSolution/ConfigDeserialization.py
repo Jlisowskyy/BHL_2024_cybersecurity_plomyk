@@ -1,6 +1,6 @@
 import json
 import MainFlowLib as mfl
-
+from MainFlowLib import Worker
 
 def init_departments(json_data: str) -> list[mfl.Department]:
     data_dict = json.loads(json_data)
@@ -19,7 +19,7 @@ def init_departments(json_data: str) -> list[mfl.Department]:
     return departments_list
 
 
-def init_workers(json_data: str) -> list[[str, mfl.Worker]]:
+def init_workers(json_data: str) -> list[list[str, mfl.Worker]]:
     rv = list()
 
     data_dict = json.loads(json_data)
