@@ -108,7 +108,7 @@ class DepartmentsDb:
 
         for worker in workers:
             emails.append(worker[0])
-            linkedin_urls.append(worker[1])
+            linkedin_urls.append(worker[1].link)
             workerList.append(worker[2])
         
         # This takes a long time to finish
