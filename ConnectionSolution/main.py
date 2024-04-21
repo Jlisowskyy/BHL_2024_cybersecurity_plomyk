@@ -4,7 +4,6 @@ import MailSendingLib as mLib
 import MainFlowLib as fLib
 import prepareBasicWorkerSet
 
-
 # Function is used to perform main functionality tests
 def LogicTest():
     SendingTest()

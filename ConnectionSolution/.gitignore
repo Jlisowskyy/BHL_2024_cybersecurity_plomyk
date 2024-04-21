@@ -1,4 +1,7 @@
 .venv/
 .idea/
 mailList
-__pyache__/
+__pycache__/
+.myenv/
+.vs/
+venv/

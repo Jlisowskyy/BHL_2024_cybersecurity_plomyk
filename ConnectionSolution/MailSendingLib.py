@@ -1,7 +1,6 @@
 # Autor: Jakub Lisowski, Jlisowskyy
 
 import smtplib as smtp
-import ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -41,6 +40,9 @@ class MailSender:
 
         print("[ LOG ] Message sent")
 
+    def SendMailWithGmailApi(self, dstMail, title, msg):
+        pass
+
     # Function performs full mail sending logic with to desired u
     def SendPreparedEmail(self, emailTitle: str, emailContent: str, srcMail: str, dstMail: str, passwd: str, link: str):
         emailContent = InplaceSrcEmailInMail(emailContent, srcMail)
@@ -48,10 +50,9 @@ class MailSender:
 
         self.SendMail(srcMail, passwd, dstMail, emailTitle, emailContent)
 
-    # TODO:
     @staticmethod
-    def GenerateDummyLink():
-        return "https://www.g00gle.com/"
+    def GenerateDummyLink(seq: str):
+        return f"127.0.0.1/{seq}"
 
 
 # Wrapping class assuming constant sending user
@@ -70,7 +71,7 @@ class UserMailSender:
 
 
 # Class used to send corporate courseMails
-class CourseNotifier:
+class Notifier:
     __sender: UserMailSender
 
     def __init__(self, server, port, mail, passwd):

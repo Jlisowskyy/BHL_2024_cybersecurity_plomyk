@@ -1,74 +1,47 @@
 # Author: Jakub Lisowski, Jlisowskyy
 
 import json
+import threading
 import time
 
 import MailSendingLib as mLib
 
-# Class is used to store whole groups of workers
-
-class WorkerData:
-    def GatherInfo(self) -> str:
-        return "lack of info"
-
-    def GetLink(self) -> str:
-        return "lack of link"
-
-
-class LinkedinData(WorkerData):
-    link: str
-
-    def __init__(self, link: str):
-        self.link = link
-
-    # TODO:
-    def GatherInfo(self):
-        return "linkedin"
-
-    def GetLink(self):
-        return self.link
-
-
-class FacebookData(WorkerData):
-    link: str
-
-    def __init__(self, link: str):
-        self.link = link
-
-    def GatherInfo(self) -> str:
-        return "fb"
-
-    def GetLink(self):
-        return self.link
-
+from DataCollection import *
+import MailGenerator as mg
+import Helpers as hp
 
 class LinkTestCase:
-    code: str
     start: float
     exp: int
+    isClicked: bool
+    isReported: bool
+
+    def __init__(self, exp: int = 3):
+        self.start = time.time()
+        self.exp = exp
+        self.isReported = False
+        self.isClicked = False
 
     def IsExpired(self) -> bool:
         expSecs = float(self.exp * 3600 * 24)
         return time.time() > expSecs + self.start
 
-    # TODO:
     def IsClicked(self) -> bool:
-        return False
+        return self.isClicked
 
-    # TODO:
     def IsReported(self) -> bool:
-        return False
+        return self.isReported
 
 
 class Worker:
     name: str
     surname: str
     mail: str
-    dataset: list[WorkerData]
+    dataset: list[LinkedinData]
     lastTest: float
     tests: list[LinkTestCase]
 
-    def __init__(self, name: str, surname: str, mail: str, dataset: list[WorkerData], points=0, lastTest=time.time()):
+    def __init__(self, name: str, surname: str, mail: str, dataset: list[LinkedinData], points=0, lastTest=time.time()):
         self.name = name
         self.surname = surname
         self.mail = mail
@@ -98,8 +71,8 @@ class Worker:
 
 
 class Department:
-    # TODO:
-    # Notifier = mLib.CourseNotifier()
+    Notifier = mLib.Notifier("smtp.gmail.com", 465, "bhlmock1@gmail.com", "jwhybzganebqsgsl")
+    ScamSender = mLib.UserMailSender("smtp.gmail.com", 465, "bhlmock1@gmail.com", "jwhybzganebqsgsl")
 
     desc: str
     interval: int
@@ -119,9 +92,19 @@ class Department:
         self.courseThreshold = courceThreshold
         self.workers = list()
 
-    # TODO:
-    def PerformPhishingTest(self, worker: Worker):
-        pass
+    def PerformPhishingTest(self, worker: Worker, testDB: dict[str, LinkTestCase]):
+        test = LinkTestCase()
+
+        keyseq = hp.GenerateRandomSequence(32)
+        while testDB.get(keyseq) is not None:
+            keyseq = hp.GenerateRandomSequence(32)
+
+        testDB[keyseq] = test
+
+        link = mLib.MailSender.GenerateDummyLink(keyseq)
+        [title, content] = mg.GetMailParams(worker.dataset)
+
+        self.ScamSender.SendMail(title, content, worker.mail, link)
 
     # true -> test finished, false -> test ongoing
     def ProcessWorkerTestCase(self, worker: Worker, test: LinkTestCase) -> bool:
@@ -141,7 +124,7 @@ class Department:
 
     @staticmethod
     def SendNotification(worker: Worker):
-        pass
+        Department.Notifier.NotifyAboutCourse(worker.mail)
 
     def ProcessWorkerPointsStatus(self, worker: Worker):
 
@@ -151,9 +134,12 @@ class Department:
             worker.points = 0
             return
 
+    def ProcessTick(self, intervalInSecs: float, testDB: dict[str, LinkTestCase]):
 
-    def CheckTests(self):
         for worker in self.workers:
+            if worker.ShouldBeTested(intervalInSecs):
+                self.PerformPhishingTest(worker, testDB)
+
             ongoingTests = list()
 
             for test in worker.tests:
@@ -164,53 +150,60 @@ class Department:
 
             worker.tests = ongoingTests
 
-    def SendTests(self, intervalInSecs: float):
-        for worker in self.workers:
-            if worker.ShouldBeTested(intervalInSecs):
-                self.PerformPhishingTest(worker)
-
 
 class DepartmentsDb:
     __departments: dict[str, Department]
+    __ongoingTests: dict[str, LinkTestCase]
+    __lock: threading.Lock
 
     def __init__(self):
         self.__departments = dict()
+        self.__ongoingTests = dict()
+        self.__lock = threading.Lock()
 
     def AddDepartment(self, department: Department):
-        if self.__departments.get(department.desc) is None:
-            self.__departments[department.desc] = department
+        with self.__lock:
+            if self.__departments.get(department.desc) is None:
+                self.__departments[department.desc] = department
 
     def AddToDepartment(self, departmentDesc: str, worker: Worker):
-        if self.__departments.get(departmentDesc) is not None:
-            self.__departments[departmentDesc].workers.append(worker)
+        with self.__lock:
+            if self.__departments.get(departmentDesc) is not None:
+                self.__departments[departmentDesc].workers.append(worker)
 
     def SetDepartmentInterval(self, departmentDesc: str, interval: int):
-        dep = self.__departments.get(departmentDesc)
-        if dep is not None:
-            dep.interval = interval
+        with self.__lock:
+            dep = self.__departments.get(departmentDesc)
+            if dep is not None:
+                dep.interval = interval
 
     def SetDepartmentReportPoints(self, departmentDesc: str, reportPoints: int):
-        dep = self.__departments.get(departmentDesc)
-        if dep is not None:
-            dep.reportPoints = reportPoints
+        with self.__lock:
+            dep = self.__departments.get(departmentDesc)
+            if dep is not None:
+                dep.reportPoints = reportPoints
 
     def SetDepartmentMissPoints(self, departmentDesc: str, missPoints: int):
-        dep = self.__departments.get(departmentDesc)
-        if dep is not None:
-            dep.missPoints = missPoints
+        with self.__lock:
+            dep = self.__departments.get(departmentDesc)
+            if dep is not None:
+                dep.missPoints = missPoints
 
     def SetDepartmentClickPoints(self, departmentDesc: str, clickPoints: int):
-        dep = self.__departments.get(departmentDesc)
-        if dep is not None:
-            dep.clickPoints = clickPoints
+        with self.__lock:
+            dep = self.__departments.get(departmentDesc)
+            if dep is not None:
+                dep.clickPoints = clickPoints
 
     def SetDepartmentCourseThreshold(self, departmentDesc: str, courseThreshold: int):
-        dep = self.__departments.get(departmentDesc)
-        if dep is not None:
-            dep.courseThreshold = courseThreshold
+        with self.__lock:
+            dep = self.__departments.get(departmentDesc)
+            if dep is not None:
+                dep.courseThreshold = courseThreshold
 
     def ProcessTick(self):
-        for key, dep in self.__departments.items():
-            interval = dep.interval
-            intervalInSecs = float(interval * 3600 * 24)
-            dep.SendTests(intervalInSecs)
+        with self.__lock:
+            for key, dep in self.__departments.items():
+                interval = dep.interval
+                intervalInSecs = float(interval * 3600 * 24)
+                dep.ProcessTick(intervalInSecs, self.__ongoingTests)

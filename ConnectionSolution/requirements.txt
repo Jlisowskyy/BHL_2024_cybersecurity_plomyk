@@ -1,0 +1,11 @@
+pip
+distro
+wheel
+google
+Jinja2
+setuptools
+typing_extensions
+future
+Flask
+openai
+python-dotenv
