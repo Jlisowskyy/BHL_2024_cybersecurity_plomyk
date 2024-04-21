@@ -10,8 +10,8 @@ import Application as App
 # Function is used to perform main functionality tests
 def LogicTest():
     # SendingTest()
-    GmailSendingTest()
-    # FlowTests()
+    # GmailSendingTest()
+    FlowTests()
 
 
 #  TEST FILE FORMAT:

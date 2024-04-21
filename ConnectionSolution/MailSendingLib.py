@@ -77,11 +77,11 @@ class MailSender:
         print("[ LOG ] Message sent")
 
     # Function performs full mail sending logic with to desired u
-    def SendPreparedEmail(self, emailTitle: str, emailContent: str, srcMail: str, dstMail: str, passwd: str, link: str):
+    def SendPreparedEmail(self, emailTitle: str, emailContent: str, srcMail: str, dstMail: str, link: str):
         emailContent = InplaceSrcEmailInMail(emailContent, srcMail)
         emailContent = InplaceLinkInMail(emailContent, link)
 
-        self.SendMail(srcMail, passwd, dstMail, emailTitle, emailContent)
+        self.SendMailWithGmailApi(dstMail, emailTitle, emailContent)
 
     @staticmethod
     def GenerateDummyLink(seq: str):
@@ -100,7 +100,7 @@ class UserMailSender:
         self.__sender = MailSender(server, port)
 
     def SendMail(self, emailTitle: str, emailContent: str, dstMail: str, link: str = ""):
-        self.__sender.SendPreparedEmail(emailTitle, emailContent, self.__srcMail, dstMail, self.__srcPasswd, link)
+        self.__sender.SendPreparedEmail(emailTitle, emailContent, self.__srcMail, dstMail, link)
 
 
 # Class used to send corporate courseMails
