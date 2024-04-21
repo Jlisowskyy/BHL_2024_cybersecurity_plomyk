@@ -57,5 +57,4 @@ class Application:
 if __name__ == '__main__':
     app = Application("configs/departmentSetup.json", "configs/basicWorkerSet.json")
     app.GetDepartments()
-    app.db.SaveUsers("out")
-    # app.Run()
+    app.Run()

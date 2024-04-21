@@ -58,7 +58,8 @@ namespace HackatonUI
         
         private void CloseInterpreter(object? sender, EventArgs e)
         {
-            _interpreter.Kill();
+            _interpreter.StandardInput.WriteLine("exit");
+            // _interpreter.Kill();
             _interpreter.Dispose();
         }
         
