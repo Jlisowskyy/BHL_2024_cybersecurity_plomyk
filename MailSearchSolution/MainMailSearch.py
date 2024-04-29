@@ -34,7 +34,7 @@ class MailScraper:
 if __name__ == '__main__':
     # LogicTest()
     username = 'cyberplomyk@outlook.com'
-    password = 'Lukaszjestcyborgiem'
+    password = ''
     host = 'imap-mail.outlook.com'
     mailScraper = MailScraper(host, username, password)
     mailScraper.get_outlook_emails()

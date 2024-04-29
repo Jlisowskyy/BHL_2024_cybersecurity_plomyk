@@ -88,7 +88,7 @@ class MessageScraper:
 
 if __name__ == '__main__':
     username = 'cyberplomyk@outlook.com'
-    password = 'Lukaszjestcyborgiem'
+    password = ''
     message_scraper = MessageScraper(username, password)
     emailMessages = message_scraper.get_new_messages()
     for message in emailMessages:
