@@ -3,6 +3,7 @@
 ## Results:
 
 This solution won first place in the cybersecurity category at the 2024 edition of the BEST hackathon.
+![https://github.com/Jlisowskyy/BHL_2024_cybersecurity_plomyk/blob/main/besthackingleague.JPG](https://github.com/Jlisowskyy/BHL_2024_cybersecurity_plomyk/blob/main/besthackingleague.JPG)
 
 ## Issue:
 
